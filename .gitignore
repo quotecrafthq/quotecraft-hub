@@ -1,0 +1,21 @@
+# OS & Editor Artifacts
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Environment & Local Scratch
+.env
+.env.*
+*.log
+*.zip
+tmp/
+scratch/
+
+# Guardrails: Never commit private internal ops/sales/backend assets to public hub repo
+HANDOFF_*.md
+backend/
+docs/
+previews/
