@@ -6,6 +6,7 @@ Fast, mobile-first conversion landing pages, interactive quote/cost calculators,
 
 - `/` ([`index.html`](./index.html)) — QuoteCraft Studio Mini Contact Hub (booking, direct email, zero-backend 30-sec project brief modal, and filterable live demo directory).
 - `/demos/roof-calculator/` ([`demos/roof-calculator/index.html`](./demos/roof-calculator/index.html)) — **Live Interactive Demo #1: US Roof Replacement Quote Calculator** (square footage & roofing squares math, pitch slope & waste factor, 5 US material tiers, tear-off/upgrade options, 120-month financing preview, and zero-backend lead capture).
+- `/demos/roofing-landing/` ([`demos/roofing-landing/index.html`](./demos/roofing-landing/index.html)) — **Live Interactive Demo #2: Kitchen & Storm-Damage Conversion Landing Page** (sub-second mobile-first US contractor landing page, embedded instant scope estimator, HTML5 `<canvas>` compressed photo upload, and 2-mode serverless lead capture).
 
 ## Architecture Principles
 

@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apex Shield Roofing &amp; Remodeling — Conversion Landing Page Live Demo | QuoteCraft Studio</title>
+  <meta
+    name="description"
+    content="Sub-second mobile-first US contractor conversion landing page with embedded instant scope estimator and client-side compressed project photo upload. Built by QuoteCraft Studio on $0/mo serverless architecture."
+  />
+  <meta property="og:title" content="Kitchen & Storm-Damage Conversion Landing Page — QuoteCraft Studio Live Demo" />
+  <meta
+    property="og:description"
+    content="Preview a high-trust US roofing & remodeling conversion page with instant scope ballpark estimator, canvas photo compression, and $0/mo Google Apps Script lead routing."
+  />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#F5F4EF" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23162A45'/%3E%3Cpath d='M32 13L15 22v12c0 11 7.2 19.6 17 22 9.8-2.4 17-11 17-22V22L32 13z' fill='none' stroke='%23E89C73' stroke-width='3' stroke-linejoin='round'/%3E%3Cpath d='M24 33l6 6 11-12' fill='none' stroke='%23FFFFFF' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+  />
+
+  <style>
+    :root {
+      --bg-canvas: #f5f4ef;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f0eee7;
+      --bg-hover: #faf9f5;
+
+      --ink-primary: #131820;
+      --ink-secondary: #475161;
+      --ink-muted: #697383;
+
+      --border-hairline: #e4e1d8;
+      --border-strong: #cfc9bc;
+
+      --brand-navy: #162a45;
+      --brand-navy-hover: #102036;
+      --brand-navy-soft: #edf1f6;
+
+      --accent-copper: #b94a1f;
+      --accent-copper-hover: #9a3c17;
+      --accent-copper-soft: #fdf2ed;
+
+      --status-live: #157a44;
+      --status-live-bg: #ecf8f1;
+      --status-err: #b42318;
+      --status-err-bg: #fef3f2;
+
+      --shadow-card: 0 1px 2px rgba(19, 24, 32, 0.04), 0 12px 28px -16px rgba(19, 24, 32, 0.12);
+      --shadow-cta: 0 2px 6px rgba(185, 74, 31, 0.22), 0 10px 22px -10px rgba(185, 74, 31, 0.36);
+
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-primary);
+      background-color: var(--bg-canvas);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--brand-navy);
+      outline-offset: 2px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    /* Studio Demo Top Ribbon */
+    .studio-ribbon {
+      background: var(--brand-navy);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 12.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .studio-ribbon-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ribbon-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .ribbon-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: var(--accent-copper);
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .ribbon-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ribbon-link {
+      font-weight: 600;
+      color: #ffffff;
+      opacity: 0.9;
+    }
+
+    .ribbon-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .ribbon-cta {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .ribbon-cta:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    /* Page Container */
+    .page-shell {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 18px 72px;
+    }
+
+    /* Zero-Distraction Contractor Header */
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding: 12px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-md);
+      box-shadow: 0 1px 2px rgba(19, 24, 32, 0.03);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--brand-navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .brand-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .rating-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .rating-star {
+      color: var(--accent-copper);
+    }
+
+    .header-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-copper);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      transition: background-color 140ms ease;
+    }
+
+    .header-cta:hover {
+      background: var(--accent-copper-hover);
+    }
+
+    /* Surface Card */
+    .sheet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .section-gap {
+      margin-top: 22px;
+    }
+
+    /* Hero Conversion Grid */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.95fr);
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .hero-left {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-top: 4px solid var(--brand-navy);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 28px 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-copper);
+      margin: 0 0 10px;
+    }
+
+    .hero-title {
+      margin: 0 0 14px;
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.035em;
+      color: var(--ink-primary);
+    }
+
+    .hero-desc {
+      margin: 0 0 22px;
+      font-size: 15.5px;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+      max-width: 54ch;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-copper {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: var(--radius-md);
+      background: var(--accent-copper);
+      color: #ffffff;
+      border: 1px solid transparent;
+      font-size: 14.5px;
+      font-weight: 700;
+      box-shadow: var(--shadow-cta);
+      transition: transform 150ms ease, background-color 150ms ease;
+    }
+
+    .btn-copper:hover {
+      background: var(--accent-copper-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 16px;
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      color: var(--ink-primary);
+      border: 1px solid var(--border-strong);
+      font-size: 14px;
+      font-weight: 650;
+      transition: background-color 140ms ease, border-color 140ms ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-hover);
+      border-color: var(--brand-navy);
+    }
+
+    .hero-proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .proof-val {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--brand-navy);
+      line-height: 1.2;
+    }
+
+    .proof-lbl {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    /* Right Hero: Embedded Instant Scope Estimator */
+    .quick-calc-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-top: 4px solid var(--accent-copper);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 22px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .qc-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .qc-title {
+      margin: 0;
+      font-size: 15.5px;
+      font-weight: 750;
+      letter-spacing: -0.015em;
+    }
+
+    .live-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--status-live);
+      background: var(--status-live-bg);
+      padding: 3px 8px;
+      border-radius: 5px;
+    }
+
+    .qc-group-lbl {
+      font-size: 12px;
+      font-weight: 650;
+      color: var(--ink-secondary);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .qc-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .qc-opt {
+      padding: 9px 8px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      font-size: 12.5px;
+      font-weight: 650;
+      color: var(--ink-primary);
+      text-align: center;
+      transition: all 140ms ease;
+    }
+
+    .qc-opt:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .qc-opt[aria-pressed="true"] {
+      background: var(--brand-navy);
+      border-color: var(--brand-navy);
+      color: #ffffff;
+    }
+
+    .qc-opt-sub {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 500;
+      opacity: 0.78;
+      margin-top: 2px;
+    }
+
+    .qc-result-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: var(--brand-navy-soft);
+      border: 1px solid #d5dfe9;
+    }
+
+    .qc-result-lbl {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brand-navy);
+    }
+
+    .qc-result-val {
+      font-family: var(--font-mono);
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      line-height: 1.15;
+      margin: 4px 0 3px;
+    }
+
+    .qc-result-meta {
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+
+    .qc-cta {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: var(--radius-md);
+      background: var(--brand-navy);
+      color: #ffffff;
+      border: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      transition: background-color 140ms ease;
+    }
+
+    .qc-cta:hover {
+      background: var(--brand-navy-hover);
+    }
+
+    /* Section Header */
+    .sec-head {
+      padding: 18px 24px 14px;
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .sec-title {
+      margin: 0;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 750;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+    }
+
+    .sec-meta {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Services 3-Column Strip */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .service-card {
+      padding: 22px 24px;
+      border-right: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .service-card:last-child {
+      border-right: none;
+    }
+
+    .svc-num {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent-copper);
+      margin-bottom: 6px;
+    }
+
+    .svc-name {
+      margin: 0 0 6px;
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -0.015em;
+    }
+
+    .svc-desc {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+    }
+
+    .svc-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-hairline);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 650;
+      color: var(--brand-navy);
+    }
+
+    /* 3-Step Process Bar */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .process-step {
+      padding: 20px 24px;
+      border-right: 1px solid var(--border-hairline);
+    }
+
+    .process-step:last-child {
+      border-right: none;
+    }
+
+    .proc-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      background: var(--brand-navy-soft);
+      padding: 3px 8px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+    }
+
+    .proc-title {
+      margin: 0 0 4px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .proc-desc {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+    }
+
+    /* Lead + Canvas Compressed Photo Upload Section */
+    .lead-sheet {
+      border-top: 4px solid var(--accent-copper);
+    }
+
+    .lead-wrap {
+      padding: 24px;
+    }
+
+    .scope-sync-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-navy-soft);
+      border: 1px solid #d5dfe9;
+      margin-bottom: 18px;
+      font-size: 13px;
+    }
+
+    .scope-sync-val {
+      font-family: var(--font-mono);
+      font-weight: 750;
+      color: var(--brand-navy);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 650;
+      color: var(--ink-primary);
+    }
+
+    .req-star {
+      color: var(--accent-copper);
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      font-size: 14px;
+      color: var(--ink-primary);
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      outline: none;
+      border-color: var(--brand-navy);
+      box-shadow: 0 0 0 3px rgba(22, 42, 69, 0.1);
+    }
+
+    .field-input.invalid {
+      border-color: var(--status-err);
+      background: var(--status-err-bg);
+    }
+
+    .field-err {
+      font-size: 12px;
+      color: var(--status-err);
+      display: none;
+    }
+
+    .field-err.visible {
+      display: block;
+    }
+
+    .field-textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    /* Canvas Photo Dropzone */
+    .photo-dropzone {
+      border: 1.5px dashed var(--border-strong);
+      border-radius: var(--radius-md);
+      background: var(--bg-subtle);
+      padding: 18px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 150ms ease, background-color 150ms ease;
+    }
+
+    .photo-dropzone:hover,
+    .photo-dropzone.dragover {
+      border-color: var(--brand-navy);
+      background: var(--brand-navy-soft);
+    }
+
+    .dropzone-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .dropzone-sub {
+      font-size: 12px;
+      color: var(--ink-muted);
+      margin-top: 3px;
+    }
+
+    .photo-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .photo-thumb-card {
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .photo-thumb-img {
+      width: 100%;
+      height: 112px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg-subtle);
+    }
+
+    .photo-thumb-meta {
+      padding: 7px 9px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      color: var(--status-live);
+    }
+
+    .photo-remove-btn {
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-subtle);
+      color: var(--ink-secondary);
+      border-radius: 5px;
+      padding: 2px 6px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .photo-remove-btn:hover {
+      border-color: var(--status-err);
+      color: var(--status-err);
+    }
+
+    .form-submit-row {
+      margin-top: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .form-mode-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      max-width: 50ch;
+    }
+
+    /* Ticket Confirmation Box */
+    .ticket-box {
+      display: none;
+      padding: 20px;
+      border-radius: var(--radius-md);
+      background: var(--status-live-bg);
+      border: 1px solid #b8e2c9;
+    }
+
+    .ticket-box.visible {
+      display: block;
+    }
+
+    .ticket-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .ticket-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 750;
+      color: var(--status-live);
+    }
+
+    .ticket-ref {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      background: #ffffff;
+      border: 1px solid #c6dfd0;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .ticket-pre {
+      background: #ffffff;
+      border: 1px solid #cde5d6;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      margin: 0 0 14px;
+      overflow-x: auto;
+    }
+
+    .ticket-photos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .ticket-photos img {
+      width: 96px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 1px solid #b8e2c9;
+    }
+
+    .ticket-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 15px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-navy);
+      color: #ffffff;
+      border: none;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .btn-navy:hover {
+      background: var(--brand-navy-hover);
+    }
+
+    .btn-subtle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 13px;
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      color: var(--ink-primary);
+      border: 1px solid var(--border-strong);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .btn-subtle:hover {
+      background: var(--bg-hover);
+    }
+
+    /* Reviews Grid */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .review-card {
+      padding: 20px 24px;
+      border-right: 1px solid var(--border-hairline);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .review-card:last-child {
+      border-right: none;
+    }
+
+    .review-stars {
+      color: var(--accent-copper);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .review-quote {
+      margin: 0;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .review-author {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .review-job {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* FAQ Accordion */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-btn {
+      width: 100%;
+      padding: 16px 24px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      text-align: left;
+      font-size: 14.5px;
+      font-weight: 650;
+      color: var(--ink-primary);
+    }
+
+    .faq-btn:hover {
+      background: var(--bg-hover);
+    }
+
+    .faq-icon {
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--accent-copper);
+      flex-shrink: 0;
+    }
+
+    .faq-panel {
+      display: none;
+      padding: 0 24px 16px;
+      font-size: 13.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .faq-panel.open {
+      display: block;
+    }
+
+    /* QuoteCraft Studio CTA Banner */
+    .studio-banner {
+      margin-top: 26px;
+      background: var(--brand-navy);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 24px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .studio-banner-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #e89c73;
+      margin: 0 0 5px;
+    }
+
+    .studio-banner-title {
+      margin: 0 0 5px;
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+    }
+
+    .studio-banner-sub {
+      margin: 0;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.84);
+      max-width: 56ch;
+    }
+
+    .studio-banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-ghost-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 12px 15px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .btn-ghost-light:hover {
+      background: rgba(255, 255, 255, 0.22);
+    }
+
+    .page-footer {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      transform: translateX(-50%) translateY(14px);
+      background: var(--ink-primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 550;
+      padding: 10px 16px;
+      border-radius: 9px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .services-grid,
+      .process-grid,
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card,
+      .process-step,
+      .review-card {
+        border-right: none;
+        border-bottom: 1px solid var(--border-hairline);
+      }
+
+      .service-card:last-child,
+      .process-step:last-child,
+      .review-card:last-child {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        padding: 16px 14px 56px;
+      }
+
+      .hero-left,
+      .quick-calc-card,
+      .lead-wrap {
+        padding: 18px 16px;
+      }
+
+      .sec-head,
+      .service-card,
+      .process-step,
+      .review-card,
+      .faq-btn,
+      .faq-panel {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .form-grid,
+      .photo-thumbs {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-proof-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media print {
+      .studio-ribbon,
+      .studio-banner,
+      .ticket-actions,
+      .toast {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff;
+        background-image: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- QuoteCraft Studio Demo Ribbon -->
+  <div class="studio-ribbon" id="studio-ribbon">
+    <div class="studio-ribbon-inner">
+      <div class="ribbon-left">
+        <span class="ribbon-badge">Live Demo #2</span>
+        <span>Built by <strong>QuoteCraft Studio</strong> · 5-Min Customizable Contractor Template ($0/mo Stack)</span>
+      </div>
+      <div class="ribbon-actions">
+        <a class="ribbon-link" id="ribbon-hub-link" href="../../">&larr; Contact Hub</a>
+        <a class="ribbon-cta" href="#studio-cta">Customize For Your Brand</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-shell">
+    <!-- Contractor Header -->
+    <header class="site-header">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 3 4.5 6.8v5.5c0 5 3.3 9 7.5 10.2 4.2-1.2 7.5-5.2 7.5-10.2V6.8L12 3Z" stroke="#E89C73" stroke-width="1.8" stroke-linejoin="round" />
+            <path d="m8.8 12.2 2.2 2.2 4.4-4.6" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div>
+          <div class="brand-name" id="client-name">Apex Shield Roofing &amp; Remodeling</div>
+          <div class="brand-sub" id="client-area">Dallas–Fort Worth, TX · Licensed &amp; Insured Demo Sample</div>
+        </div>
+      </div>
+      <div class="header-right">
+        <span class="rating-chip" id="client-rating">
+          <span class="rating-star" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>4.9 · 180+ Projects (Sample)</span>
+        </span>
+        <a href="#estimate-form" class="header-cta">Free Inspection &rarr;</a>
+      </div>
+    </header>
+
+    <!-- Hero + Embedded Quick Scope Estimator -->
+    <section class="hero-grid" aria-labelledby="hero-heading">
+      <div class="hero-left">
+        <div>
+          <p class="hero-kicker" id="hero-kicker">Storm-Damage Roofing &amp; Kitchen Remodeling · DFW Metroplex</p>
+          <h1 class="hero-title" id="hero-heading">
+            Upfront Pricing Before We Climb Your Roof or Touch Your Kitchen.
+          </h1>
+          <p class="hero-desc" id="hero-desc">
+            No high-pressure 3-hour sales pitches. Preview an honest ballpark range right now, upload optional storm or kitchen photos from your phone, and get a line-item inspection quote within 24 hours.
+          </p>
+          <div class="hero-cta-row">
+            <a href="#estimate-form" class="btn-copper">
+              <span>Request Exact On-Site Quote</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <a href="../roof-calculator/" class="btn-outline" id="full-calc-link">
+              <span>Open Full Roof Calculator</span>
+              <span aria-hidden="true">&#8599;</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-proof-grid" id="hero-proof-grid"></div>
+      </div>
+
+      <!-- Embedded Instant Scope Estimator -->
+      <aside class="quick-calc-card" aria-label="Embedded instant project scope estimator">
+        <div class="qc-head">
+          <h2 class="qc-title">Instant Project Ballpark</h2>
+          <span class="live-badge">Live Estimator</span>
+        </div>
+
+        <div>
+          <span class="qc-group-lbl">1. Select Primary Service</span>
+          <div class="qc-btn-grid" id="qc-service-grid" role="group" aria-label="Primary service"></div>
+        </div>
+
+        <div>
+          <span class="qc-group-lbl">2. Home / Project Scale</span>
+          <div class="qc-btn-grid" id="qc-scale-grid" role="group" aria-label="Project scale"></div>
+        </div>
+
+        <div>
+          <span class="qc-group-lbl">3. Target Timeline</span>
+          <div class="qc-btn-grid" id="qc-timeline-grid" role="group" aria-label="Target timeline"></div>
+        </div>
+
+        <div class="qc-result-box">
+          <div class="qc-result-lbl">Estimated Installed Range</div>
+          <div class="qc-result-val tabular" id="qc-range-display">$11,800 – $15,200</div>
+          <div class="qc-result-meta" id="qc-meta-display">Storm-Damage Roof · Standard Home · Insurance photo packet included</div>
+        </div>
+
+        <button type="button" class="qc-cta" id="qc-lock-btn">
+          Lock In This Scope &amp; Attach Photos &darr;
+        </button>
+      </aside>
+    </section>
+
+    <!-- Core High-Ticket Services -->
+    <section class="sheet section-gap" aria-labelledby="services-heading">
+      <div class="sec-head">
+        <h2 class="sec-title" id="services-heading">Core Residential Services</h2>
+        <span class="sec-meta">Fixed line-item proposals · Zero hidden change orders</span>
+      </div>
+      <div class="services-grid" id="services-grid"></div>
+    </section>
+
+    <!-- 3-Step Process -->
+    <section class="sheet section-gap" aria-labelledby="process-heading">
+      <div class="sec-head">
+        <h2 class="sec-title" id="process-heading">How Every Project Runs</h2>
+        <span class="sec-meta">Clean execution from inspection to final magnet sweep</span>
+      </div>
+      <div class="process-grid" id="process-grid"></div>
+    </section>
+
+    <!-- Lead Capture + Client-Side Canvas Compressed Photo Uploader -->
+    <section class="sheet lead-sheet section-gap" id="estimate-form" aria-labelledby="form-heading">
+      <div class="sec-head">
+        <h2 class="sec-title" id="form-heading">Request Written Quote &amp; Optional Photo Review</h2>
+        <span class="sec-meta" id="backend-mode-badge">Demo Mode · Zero-Backend Ready</span>
+      </div>
+      <div class="lead-wrap">
+        <div class="scope-sync-bar">
+          <span>Selected Scope: <strong id="sync-scope-text">Storm-Damage Roof · Standard Home</strong></span>
+          <span class="scope-sync-val tabular" id="sync-range-text">$11,800 – $15,200</span>
+        </div>
+
+        <form id="lead-form" novalidate>
+          <!-- Honeypot field for lightweight anti-bot protection -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="website_url">Leave empty</label>
+            <input type="text" id="website_url" name="website_url" tabindex="-1" autocomplete="off" />
+          </div>
+
+          <div class="form-grid">
+            <div class="field-group">
+              <label class="field-label" for="lead-name">Full Name <span class="req-star">*</span></label>
+              <input id="lead-name" type="text" class="field-input" placeholder="e.g., Rachel Bennett" autocomplete="name" required />
+              <span class="field-err" id="err-name">Please enter your name.</span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="lead-email">Email Address <span class="req-star">*</span></label>
+              <input id="lead-email" type="email" class="field-input" placeholder="e.g., rachel@example.com" autocomplete="email" required />
+              <span class="field-err" id="err-email">Please enter a valid email address.</span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="lead-zip">Property ZIP Code <span class="req-star">*</span></label>
+              <input id="lead-zip" type="text" inputmode="numeric" maxlength="10" class="field-input" placeholder="e.g., 75214" required />
+              <span class="field-err" id="err-zip">Please enter a valid 5-digit US ZIP code.</span>
+            </div>
+
+            <div class="field-group">
+              <label class="field-label" for="lead-address">Street Address (optional — for aerial roof view)</label>
+              <input id="lead-address" type="text" class="field-input" placeholder="e.g., 6140 Lakewood Blvd, Dallas, TX" />
+            </div>
+
+            <div class="field-group full">
+              <label class="field-label" for="photo-input">Optional Project Photos (Auto-Compressed via HTML5 Canvas, max 3)</label>
+              <div class="photo-dropzone" id="photo-dropzone" role="button" tabindex="0" aria-label="Upload up to 3 project photos">
+                <div class="dropzone-title">Tap to Attach Roof, Hail Damage, or Kitchen Photos</div>
+                <div class="dropzone-sub">Automatically compressed in your browser (&lt;180 KB each) for instant mobile upload to Google Drive</div>
+                <input id="photo-input" type="file" accept="image/*" multiple style="display:none" />
+              </div>
+              <div class="photo-thumbs" id="photo-thumbs"></div>
+            </div>
+
+            <div class="field-group full">
+              <label class="field-label" for="lead-notes">Project Details (optional)</label>
+              <textarea id="lead-notes" class="field-textarea" placeholder="Mention active leaks, insurance claim status, preferred kitchen layout, or best time for an inspection..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-submit-row">
+            <div class="form-mode-note" id="form-mode-note">
+              Demo Mode active: generates an instant structured ticket locally. Connect your Google Apps Script URL in <code>CLIENT_CONFIG</code> to auto-save leads to Sheets, photos to Drive, and send instant email alerts at $0/mo.
+            </div>
+            <button type="submit" class="btn-copper" id="submit-btn">
+              <span>Submit Estimate Request</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Confirmation Ticket -->
+        <div class="ticket-box" id="ticket-box" aria-live="polite">
+          <div class="ticket-head">
+            <div>
+              <h3 class="ticket-title" id="ticket-title">Lead &amp; Estimate Ticket Ready</h3>
+              <div style="font-size:13px; color:var(--ink-secondary); margin-top:2px;" id="ticket-subtitle">
+                Structured payload verified with client-side compressed photos.
+              </div>
+            </div>
+            <span class="ticket-ref tabular" id="ticket-ref">#AS-LEAD-0000</span>
+          </div>
+          <pre class="ticket-pre" id="ticket-pre"></pre>
+          <div class="ticket-photos" id="ticket-photos"></div>
+          <div class="ticket-actions">
+            <a class="btn-navy" id="ticket-mailto" href="#">Open in Email App</a>
+            <button type="button" class="btn-subtle" id="ticket-copy">Copy Lead Summary</button>
+            <button type="button" class="btn-subtle" id="ticket-print">Print / PDF</button>
+            <button type="button" class="btn-subtle" id="ticket-reset">Submit Another</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Local Homeowner Reviews -->
+    <section class="sheet section-gap" aria-labelledby="reviews-heading">
+      <div class="sec-head">
+        <h2 class="sec-title" id="reviews-heading">Verified Local Homeowner Reviews</h2>
+        <span class="sec-meta">Sample placeholder copy · Replaced with client Google reviews in 2 mins</span>
+      </div>
+      <div class="reviews-grid" id="reviews-grid"></div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="sheet section-gap" aria-labelledby="faq-heading">
+      <div class="sec-head">
+        <h2 class="sec-title" id="faq-heading">Common Homeowner Questions</h2>
+        <span class="sec-meta">Clear answers upfront</span>
+      </div>
+      <div class="faq-list" id="faq-list"></div>
+    </section>
+
+    <!-- QuoteCraft Studio Banner -->
+    <section class="studio-banner" id="studio-cta" aria-label="QuoteCraft Studio offer">
+      <div>
+        <p class="studio-banner-kicker">QuoteCraft Studio · Conversion Assets For US Contractors</p>
+        <h2 class="studio-banner-title">Launch this exact page for your roofing or remodeling company in 5–10 days.</h2>
+        <p class="studio-banner-sub">
+          Rebranded with your logo, local reviews, pricing logic, compressed Drive photo uploads, and instant Google Sheets + Email alerts on $0/mo serverless hosting. 100% code ownership.
+        </p>
+      </div>
+      <div class="studio-banner-actions">
+        <a class="btn-copper" id="banner-book-btn" href="https://cal.com/quotecrafthq/15min" target="_blank" rel="noopener noreferrer">
+          <span>Book a Free 15-Min Call</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="btn-ghost-light" id="banner-hub-btn" href="../../">
+          <span>&larr; Back to Contact Hub</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="page-footer" id="footer-credit">
+      Interactive Demo #2 by Wahyu Pamungkas — Founder, QuoteCraft Studio · $0/mo Serverless Architecture
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // =========================================================================
+    // CLIENT_CONFIG — KUSTOMISASI UNTUK KLIEN AS DALAM 5–10 MENIT DI BLOK INI
+    // =========================================================================
+    const CLIENT_CONFIG = {
+      company: {
+        name: "Apex Shield Roofing & Remodeling",
+        serviceArea: "Dallas–Fort Worth, TX · Licensed & Insured Demo Sample",
+        ratingText: "4.9 · 180+ Projects (Sample)",
+        kicker: "Storm-Damage Roofing & Kitchen Remodeling · DFW Metroplex",
+        headline: "Upfront Pricing Before We Climb Your Roof or Touch Your Kitchen.",
+        subheadline:
+          "No high-pressure 3-hour sales pitches. Preview an honest ballpark range right now, upload optional storm or kitchen photos from your phone, and get a line-item inspection quote within 24 hours."
+      },
+
+      studio: {
+        founderSignature: "Wahyu Pamungkas — Founder, QuoteCraft Studio",
+        contactEmail: "quotecrafthq@gmail.com",
+        bookingUrl: "https://cal.com/quotecrafthq/15min",
+        hubUrl: "../../",
+        roofCalculatorUrl: "../roof-calculator/",
+        showStudioRibbon: true,
+        showStudioBanner: true
+      },
+
+      // MODE BACKEND SERVERLESS ($0/mo Google Apps Script — lihat file Code.gs)
+      // Kosongkan "" untuk Demo Mode (zero-backend).
+      // Isi URL Web App Apps Script (https://script.google.com/macros/s/.../exec) untuk Live Production Mode.
+      backend: {
+        endpointUrl: "",
+        maxPhotos: 3,
+        maxPhotoEdgePx: 1200,
+        jpegQuality: 0.78
+      },
+
+      proofMetrics: [
+        { value: "< 24h", label: "Written inspection turnaround" },
+        { value: "10-Yr", label: "Transferable workmanship warranty" },
+        { value: "$0", label: "Obligation on-site estimate" }
+      ],
+
+      estimator: {
+        services: [
+          {
+            id: "storm-roof",
+            label: "Storm Roof",
+            sub: "Hail / Wind",
+            fullLabel: "Storm-Damage Roof Replacement",
+            note: "Includes insurance photo report & tear-off",
+            baseLow: 11800,
+            baseHigh: 15200
+          },
+          {
+            id: "kitchen",
+            label: "Kitchen",
+            sub: "Remodel",
+            fullLabel: "Full Kitchen Remodel",
+            note: "Cabinets, quartz counters, tile & fixtures",
+            baseLow: 24500,
+            baseHigh: 34000
+          },
+          {
+            id: "combo",
+            label: "Roof + Ext.",
+            sub: "Gutters/Siding",
+            fullLabel: "Roof + Exterior Package",
+            note: "Full roof, seamless gutters & fascia",
+            baseLow: 15800,
+            baseHigh: 21400
+          }
+        ],
+        scales: [
+          { id: "compact", label: "Compact", sub: "< 1,800 sf", mult: 0.84 },
+          { id: "standard", label: "Standard", sub: "1,800–2,800 sf", mult: 1.0 },
+          { id: "large", label: "Large", sub: "2,800+ sf", mult: 1.32 }
+        ],
+        timelines: [
+          { id: "urgent", label: "ASAP", sub: "Leak / Storm" },
+          { id: "30days", label: "30 Days", sub: "Ready soon" },
+          { id: "planning", label: "1–3 Mos", sub: "Budgeting" }
+        ]
+      },
+
+      servicesList: [
+        {
+          num: "01",
+          name: "Storm & Hail Roof Replacement",
+          desc: "Class 4 impact-resistant architectural shingles or standing seam metal installed in 1–2 days with full synthetic underlayment and magnetic yard cleanup.",
+          priceTag: "From $11,500",
+          speedTag: "1–2 Day Install"
+        },
+        {
+          num: "02",
+          name: "Turnkey Kitchen Remodeling",
+          desc: "Soft-close cabinetry, quartz countertops, under-cabinet lighting, and plumbing/electrical coordination managed under one fixed-price schedule.",
+          priceTag: "From $24,500",
+          speedTag: "2–4 Week Sprint"
+        },
+        {
+          num: "03",
+          name: "Insurance Claim Documentation",
+          desc: "Date-stamped drone & roof elevation photos, soft-metal hail chalking, and Xactimate-aligned scope notes so adjusters review clean evidence.",
+          priceTag: "Included ($0)",
+          speedTag: "24h Report"
+        }
+      ],
+
+      processSteps: [
+        {
+          badge: "STEP 01 · DAY 1",
+          title: "Scope Preview & On-Site Inspection",
+          desc: "Lock in your ballpark online, attach optional photos, and get a 20-minute physical attic & exterior check with zero sales pressure."
+        },
+        {
+          badge: "STEP 02 · DAY 2",
+          title: "Fixed Line-Item Written Proposal",
+          desc: "Receive exact material specs, shingle/cabinet samples, and clear Good / Better / Best pricing with no surprise day-of add-ons."
+        },
+        {
+          badge: "STEP 03 · BUILD",
+          title: "Clean Execution & Final Walkthrough",
+          desc: "Dedicated project lead, daily photo updates, magnetic nail sweep, permit sign-off, and transferable written warranty."
+        }
+      ],
+
+      reviews: [
+        {
+          quote:
+            "After the April hailstorm they gave us an instant range online, documented every damaged slope cleanly for our carrier, and finished our 28-square roof in a single day.",
+          author: "Daniel H.",
+          job: "Lakewood, Dallas · Class 4 Shingle Roof"
+        },
+        {
+          quote:
+            "Being able to upload three kitchen photos from my iPhone saved us two wasted appointments. Their written line-item bid came in within 4% of the online estimator.",
+          author: "Melissa R.",
+          job: "Plano, TX · Full Kitchen Remodel"
+        },
+        {
+          quote:
+            "Zero pushy follow-up calls, spotless yard after tear-off, and they showed photos of the replaced plywood decking before closing it up.",
+          author: "Greg & Paula T.",
+          job: "Frisco, TX · Roof + Seamless Gutters"
+        }
+      ],
+
+      faqs: [
+        {
+          q: "How accurate is the instant ballpark estimate?",
+          a: "It reflects real local installed rates for standard single-layer tear-offs and mid-tier residential finishes. Final fixed pricing is confirmed after a brief on-site inspection for decking condition, pitch, and custom selections."
+        },
+        {
+          q: "Do I have to upload photos to request an estimate?",
+          a: "No—photos are 100% optional. Attaching 1–3 quick phone shots simply lets our estimator verify roof pitch, storm damage, or kitchen layout before arriving so your quote is faster and more accurate."
+        },
+        {
+          q: "Do you handle local building permits and HOA color packets?",
+          a: "Yes. All required municipal permits, inspection scheduling, and HOA material/color submission sheets are handled in-house before work begins."
+        },
+        {
+          q: "How fast can a storm-damaged roof be tarped or replaced?",
+          a: "Active leaks are prioritized for emergency dry-in within 24 hours, and full roof replacements are typically completed in 1–2 days once materials are staged."
+        }
+      ]
+    };
+    // =========================================================================
+    // END CLIENT_CONFIG
+    // =========================================================================
+
+    (function initLandingPage() {
+      const cfg = CLIENT_CONFIG;
+      const state = {
+        serviceId: cfg.estimator.services[0].id,
+        scaleId: "standard",
+        timelineId: "30days",
+        photos: [] // { name, origKB, compKB, dataUrl }
+      };
+
+      let toastTimer = null;
+      let lastTicketText = "";
+
+      const fmtCurrency = (n) =>
+        new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(Math.round(n / 100) * 100);
+
+      const showToast = (msg) => {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+      };
+
+      const copyText = async (text, okMsg) => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+          }
+          showToast(okMsg);
+        } catch {
+          showToast("Copy failed — please copy manually.");
+        }
+      };
+
+      // Hydrate Identity & Studio Links
+      document.getElementById("client-name").textContent = cfg.company.name;
+      document.getElementById("client-area").textContent = cfg.company.serviceArea;
+      document.getElementById("client-rating").querySelector("span:last-child").textContent = cfg.company.ratingText;
+      document.getElementById("hero-kicker").textContent = cfg.company.kicker;
+      document.getElementById("hero-heading").textContent = cfg.company.headline;
+      document.getElementById("hero-desc").textContent = cfg.company.subheadline;
+      document.getElementById("full-calc-link").href = cfg.studio.roofCalculatorUrl;
+      document.getElementById("ribbon-hub-link").href = cfg.studio.hubUrl;
+      document.getElementById("banner-hub-btn").href = cfg.studio.hubUrl;
+      document.getElementById("banner-book-btn").href = cfg.studio.bookingUrl;
+      document.getElementById("footer-credit").textContent =
+        `Interactive Demo #2 by ${cfg.studio.founderSignature} · $0/mo Serverless Architecture · © ${new Date().getFullYear()}`;
+
+      if (!cfg.studio.showStudioRibbon) document.getElementById("studio-ribbon").style.display = "none";
+      if (!cfg.studio.showStudioBanner) document.getElementById("studio-cta").style.display = "none";
+
+      const isLiveBackend = Boolean(cfg.backend.endpointUrl && cfg.backend.endpointUrl.trim());
+      if (isLiveBackend) {
+        document.getElementById("backend-mode-badge").textContent = "Live Serverless Routing ($0/mo)";
+        document.getElementById("form-mode-note").textContent =
+          "Instant encrypted submission directly to our estimating desk. No third-party lead resellers.";
+      }
+
+      // Render Proof Metrics
+      const proofGrid = document.getElementById("hero-proof-grid");
+      cfg.proofMetrics.forEach((m) => {
+        const div = document.createElement("div");
+        div.innerHTML = `<div class="proof-val tabular"></div><div class="proof-lbl"></div>`;
+        div.querySelector(".proof-val").textContent = m.value;
+        div.querySelector(".proof-lbl").textContent = m.label;
+        proofGrid.appendChild(div);
+      });
+
+      // Render Services
+      const svcGrid = document.getElementById("services-grid");
+      cfg.servicesList.forEach((s) => {
+        const art = document.createElement("article");
+        art.className = "service-card";
+        art.innerHTML = `
+          <div>
+            <div class="svc-num"></div>
+            <h3 class="svc-name"></h3>
+            <p class="svc-desc"></p>
+          </div>
+          <div class="svc-footer">
+            <span class="svc-price"></span>
+            <span class="svc-speed" style="color:var(--ink-muted)"></span>
+          </div>
+        `;
+        art.querySelector(".svc-num").textContent = s.num;
+        art.querySelector(".svc-name").textContent = s.name;
+        art.querySelector(".svc-desc").textContent = s.desc;
+        art.querySelector(".svc-price").textContent = s.priceTag;
+        art.querySelector(".svc-speed").textContent = s.speedTag;
+        svcGrid.appendChild(art);
+      });
+
+      // Render Process
+      const procGrid = document.getElementById("process-grid");
+      cfg.processSteps.forEach((p) => {
+        const div = document.createElement("div");
+        div.className = "process-step";
+        div.innerHTML = `<span class="proc-pill"></span><h3 class="proc-title"></h3><p class="proc-desc"></p>`;
+        div.querySelector(".proc-pill").textContent = p.badge;
+        div.querySelector(".proc-title").textContent = p.title;
+        div.querySelector(".proc-desc").textContent = p.desc;
+        procGrid.appendChild(div);
+      });
+
+      // Render Reviews
+      const revGrid = document.getElementById("reviews-grid");
+      cfg.reviews.forEach((r) => {
+        const div = document.createElement("article");
+        div.className = "review-card";
+        div.innerHTML = `
+          <div>
+            <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote"></p>
+          </div>
+          <div>
+            <div class="review-author"></div>
+            <div class="review-job"></div>
+          </div>
+        `;
+        div.querySelector(".review-quote").textContent = `"${r.quote}"`;
+        div.querySelector(".review-author").textContent = r.author;
+        div.querySelector(".review-job").textContent = r.job;
+        revGrid.appendChild(div);
+      });
+
+      // Render FAQ Accordion
+      const faqList = document.getElementById("faq-list");
+      cfg.faqs.forEach((f, idx) => {
+        const item = document.createElement("div");
+        item.className = "faq-item";
+        const panelId = `faq-panel-${idx}`;
+        item.innerHTML = `
+          <button type="button" class="faq-btn" aria-expanded="false" aria-controls="${panelId}">
+            <span class="faq-q"></span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-panel" id="${panelId}"></div>
+        `;
+        item.querySelector(".faq-q").textContent = f.q;
+        item.querySelector(".faq-panel").textContent = f.a;
+        const btn = item.querySelector(".faq-btn");
+        const panel = item.querySelector(".faq-panel");
+        const icon = item.querySelector(".faq-icon");
+        btn.addEventListener("click", () => {
+          const opening = !panel.classList.contains("open");
+          panel.classList.toggle("open", opening);
+          btn.setAttribute("aria-expanded", String(opening));
+          icon.textContent = opening ? "−" : "+";
+        });
+        faqList.appendChild(item);
+      });
+
+      // Embedded Quick Scope Estimator Logic
+      const getCurrentScope = () => {
+        const svc = cfg.estimator.services.find((s) => s.id === state.serviceId) || cfg.estimator.services[0];
+        const scl = cfg.estimator.scales.find((s) => s.id === state.scaleId) || cfg.estimator.scales[1];
+        const tml = cfg.estimator.timelines.find((t) => t.id === state.timelineId) || cfg.estimator.timelines[1];
+        const low = svc.baseLow * scl.mult;
+        const high = svc.baseHigh * scl.mult;
+        return {
+          svc,
+          scl,
+          tml,
+          low,
+          high,
+          rangeStr: `${fmtCurrency(low)} – ${fmtCurrency(high)}`
+        };
+      };
+
+      const renderEstimatorControls = () => {
+        const buildGroup = (containerId, items, activeId, onPick) => {
+          const wrap = document.getElementById(containerId);
+          wrap.innerHTML = "";
+          items.forEach((item) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "qc-opt";
+            btn.setAttribute("aria-pressed", String(item.id === activeId));
+            btn.innerHTML = `<span class="qc-opt-lbl"></span><span class="qc-opt-sub"></span>`;
+            btn.querySelector(".qc-opt-lbl").textContent = item.label;
+            btn.querySelector(".qc-opt-sub").textContent = item.sub;
+            btn.addEventListener("click", () => {
+              onPick(item.id);
+              renderEstimatorControls();
+            });
+            wrap.appendChild(btn);
+          });
+        };
+
+        buildGroup("qc-service-grid", cfg.estimator.services, state.serviceId, (id) => (state.serviceId = id));
+        buildGroup("qc-scale-grid", cfg.estimator.scales, state.scaleId, (id) => (state.scaleId = id));
+        buildGroup("qc-timeline-grid", cfg.estimator.timelines, state.timelineId, (id) => (state.timelineId = id));
+
+        const scope = getCurrentScope();
+        document.getElementById("qc-range-display").textContent = scope.rangeStr;
+        document.getElementById("qc-meta-display").textContent =
+          `${scope.svc.fullLabel} · ${scope.scl.label} · ${scope.svc.note}`;
+        document.getElementById("sync-scope-text").textContent =
+          `${scope.svc.fullLabel} · ${scope.scl.label} (${scope.scl.sub}) · ${scope.tml.label}`;
+        document.getElementById("sync-range-text").textContent = scope.rangeStr;
+      };
+
+      renderEstimatorControls();
+
+      document.getElementById("qc-lock-btn").addEventListener("click", () => {
+        document.getElementById("estimate-form").scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => document.getElementById("lead-name").focus(), 350);
+      });
+
+      // HTML5 <canvas> Client-Side Image Compression
+      const compressImageFile = (file) =>
+        new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onerror = () => reject(new Error("File read failed"));
+          reader.onload = () => {
+            const img = new Image();
+            img.onerror = () => reject(new Error("Invalid image"));
+            img.onload = () => {
+              const maxEdge = cfg.backend.maxPhotoEdgePx;
+              let w = img.naturalWidth;
+              let h = img.naturalHeight;
+              if (w > maxEdge || h > maxEdge) {
+                const ratio = Math.min(maxEdge / w, maxEdge / h);
+                w = Math.round(w * ratio);
+                h = Math.round(h * ratio);
+              }
+              const canvas = document.createElement("canvas");
+              canvas.width = w;
+              canvas.height = h;
+              const ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, w, h);
+              const dataUrl = canvas.toDataURL("image/jpeg", cfg.backend.jpegQuality);
+              const approxBytes = Math.round((dataUrl.length * 3) / 4);
+              resolve({
+                name: file.name.replace(/\.[^.]+$/, "") + ".jpg",
+                origKB: Math.max(1, Math.round(file.size / 1024)),
+                compKB: Math.max(1, Math.round(approxBytes / 1024)),
+                dataUrl
+              });
+            };
+            img.src = reader.result;
+          };
+          reader.readAsDataURL(file);
+        });
+
+      const renderPhotoThumbs = () => {
+        const wrap = document.getElementById("photo-thumbs");
+        wrap.innerHTML = "";
+        state.photos.forEach((p, idx) => {
+          const card = document.createElement("div");
+          card.className = "photo-thumb-card";
+          card.innerHTML = `
+            <img class="photo-thumb-img" alt="Compressed project photo preview" />
+            <div class="photo-thumb-meta">
+              <span class="photo-size-lbl"></span>
+              <button type="button" class="photo-remove-btn" aria-label="Remove photo">&times;</button>
+            </div>
+          `;
+          card.querySelector("img").src = p.dataUrl;
+          card.querySelector(".photo-size-lbl").textContent = `${p.origKB}KB → ${p.compKB}KB`;
+          card.querySelector(".photo-remove-btn").addEventListener("click", () => {
+            state.photos.splice(idx, 1);
+            renderPhotoThumbs();
+          });
+          wrap.appendChild(card);
+        });
+      };
+
+      const handlePhotoFiles = async (fileList) => {
+        const remaining = cfg.backend.maxPhotos - state.photos.length;
+        if (remaining <= 0) {
+          showToast(`Maximum ${cfg.backend.maxPhotos} photos attached.`);
+          return;
+        }
+        const selected = Array.from(fileList).filter((f) => f.type.startsWith("image/")).slice(0, remaining);
+        for (const f of selected) {
+          try {
+            const compressed = await compressImageFile(f);
+            state.photos.push(compressed);
+          } catch {
+            showToast(`Skipped unreadable image: ${f.name}`);
+          }
+        }
+        renderPhotoThumbs();
+        if (selected.length > 0) {
+          showToast(`Compressed ${selected.length} photo(s) client-side.`);
+        }
+      };
+
+      const dropzone = document.getElementById("photo-dropzone");
+      const photoInput = document.getElementById("photo-input");
+
+      dropzone.addEventListener("click", () => photoInput.click());
+      dropzone.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          photoInput.click();
+        }
+      });
+      photoInput.addEventListener("change", (e) => {
+        handlePhotoFiles(e.target.files);
+        photoInput.value = "";
+      });
+      dropzone.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dropzone.classList.add("dragover");
+      });
+      dropzone.addEventListener("dragleave", () => dropzone.classList.remove("dragover"));
+      dropzone.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dropzone.classList.remove("dragover");
+        if (e.dataTransfer && e.dataTransfer.files) handlePhotoFiles(e.dataTransfer.files);
+      });
+
+      // Lead Form Submission (Demo Mode + Live Google Apps Script Mode)
+      const leadForm = document.getElementById("lead-form");
+      const ticketBox = document.getElementById("ticket-box");
+
+      const setErr = (inputId, errId, isBad) => {
+        document.getElementById(inputId).classList.toggle("invalid", isBad);
+        document.getElementById(errId).classList.toggle("visible", isBad);
+      };
+
+      ["lead-name", "lead-email", "lead-zip"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", () => {
+          document.getElementById(id).classList.remove("invalid");
+          document.getElementById(`err-${id.replace("lead-", "")}`).classList.remove("visible");
+        });
+      });
+
+      leadForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Silently ignore bot honeypot submissions
+        if (document.getElementById("website_url").value.trim() !== "") return;
+
+        const name = document.getElementById("lead-name").value.trim();
+        const email = document.getElementById("lead-email").value.trim();
+        const zip = document.getElementById("lead-zip").value.trim();
+        const address = document.getElementById("lead-address").value.trim();
+        const notes = document.getElementById("lead-notes").value.trim();
+
+        const badName = name.length < 2;
+        const badEmail = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const badZip = !/^\d{5}(-\d{4})?$/.test(zip);
+
+        setErr("lead-name", "err-name", badName);
+        setErr("lead-email", "err-email", badEmail);
+        setErr("lead-zip", "err-zip", badZip);
+
+        if (badName || badEmail || badZip) {
+          showToast("Please complete the highlighted required fields.");
+          return;
+        }
+
+        const scope = getCurrentScope();
+        const refId = `#AS-LEAD-${String(Math.floor(1000 + Math.random() * 9000))}`;
+        const payload = {
+          refId,
+          submittedAt: new Date().toISOString(),
+          company: cfg.company.name,
+          name,
+          email,
+          zip,
+          address,
+          notes,
+          service: scope.svc.fullLabel,
+          scale: `${scope.scl.label} (${scope.scl.sub})`,
+          timeline: scope.tml.label,
+          estimateRange: scope.rangeStr,
+          photoCount: state.photos.length,
+          photos: state.photos.map((p) => ({
+            filename: p.name,
+            mimeType: "image/jpeg",
+            sizeKB: p.compKB,
+            base64Data: p.dataUrl.split(",")[1]
+          }))
+        };
+
+        const submitBtn = document.getElementById("submit-btn");
+        submitBtn.disabled = true;
+
+        let sentLive = false;
+        if (isLiveBackend) {
+          try {
+            await fetch(cfg.backend.endpointUrl.trim(), {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify(payload)
+            });
+            sentLive = true;
+          } catch {
+            sentLive = false;
+          }
+        }
+
+        submitBtn.disabled = false;
+
+        lastTicketText = [
+          `PROJECT ESTIMATE REQUEST — ${cfg.company.name}`,
+          `Reference ID       : ${refId}`,
+          `Service Requested  : ${payload.service}`,
+          `Home / Scale       : ${payload.scale}`,
+          `Target Timeline    : ${payload.timeline}`,
+          `Ballpark Estimate  : ${payload.estimateRange}`,
+          `--------------------------------------------------`,
+          `Homeowner Name     : ${name}`,
+          `Email              : ${email}`,
+          `Property ZIP       : ${zip}`,
+          `Street Address     : ${address || "(not provided)"}`,
+          `Compressed Photos  : ${state.photos.length} attached${
+            state.photos.length > 0
+              ? " (" + state.photos.map((p) => `${p.name} ${p.compKB}KB`).join(", ") + ")"
+              : ""
+          }`,
+          `Notes              : ${notes || "(none)"}`,
+          `--------------------------------------------------`,
+          `Routing Mode       : ${sentLive ? "Sent to Google Sheets + Drive ($0/mo Apps Script)" : "Zero-Backend Demo Preview"}`
+        ].join("\n");
+
+        document.getElementById("ticket-ref").textContent = refId;
+        document.getElementById("ticket-title").textContent = sentLive
+          ? "Request Sent — We'll Reply Within 24 Hours"
+          : "Lead & Estimate Ticket Generated (Demo Mode)";
+        document.getElementById("ticket-subtitle").textContent = sentLive
+          ? "Your details and compressed photos have been securely routed to our estimating team."
+          : "In Live Production Mode with Code.gs connected, this routes automatically to Google Sheets, Google Drive & Gmail at $0/mo.";
+        document.getElementById("ticket-pre").textContent = lastTicketText;
+
+        const ticketPhotos = document.getElementById("ticket-photos");
+        ticketPhotos.innerHTML = "";
+        state.photos.forEach((p) => {
+          const img = document.createElement("img");
+          img.src = p.dataUrl;
+          img.alt = p.name;
+          ticketPhotos.appendChild(img);
+        });
+
+        const params = new URLSearchParams();
+        params.set("subject", `${payload.service} Inquiry ${refId} — ZIP ${zip}`);
+        params.set("body", lastTicketText);
+        document.getElementById("ticket-mailto").href =
+          `mailto:${cfg.studio.contactEmail}?${params.toString().replace(/\+/g, "%20")}`;
+
+        leadForm.style.display = "none";
+        ticketBox.classList.add("visible");
+        showToast(`Estimate ticket ${refId} generated!`);
+        ticketBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      document.getElementById("ticket-copy").addEventListener("click", () => {
+        copyText(lastTicketText, "Lead summary copied to clipboard");
+      });
+      document.getElementById("ticket-print").addEventListener("click", () => window.print());
+      document.getElementById("ticket-reset").addEventListener("click", () => {
+        ticketBox.classList.remove("visible");
+        leadForm.style.display = "block";
+      });
+    })();
+  </script>
+</body>
+</html>
