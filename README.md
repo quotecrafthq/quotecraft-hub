@@ -11,9 +11,11 @@ quotecraft-hub/
 ├── index.html                        # QuoteCraft Studio Hub, USD Packages, Agency Rates & Contact Page
 ├── demos/
 │   ├── summit-ridge/
-│   │   └── index.html                # Flagship Demo #1: 4-Step Roofing & Remodeling Page + <canvas> Photo Upload + JSON Inspector
-│   └── roof-calculator/
-│       └── index.html                # Technical Demo #2: Standalone US Roof Pitch, Squares & Waste Factor Estimator
+│   │   └── index.html                # Live Demo #1 (Flagship): 4-Step Roofing & Remodeling Page + <canvas> Photo Upload + JSON Inspector
+│   ├── roof-calculator/
+│   │   └── index.html                # Live Demo #2 (Technical): Standalone US Roof Pitch, Squares & Waste Factor Estimator
+│   └── roofing-landing/
+│       └── index.html                # Live Demo #3 (Conversion Page): Kitchen & Storm-Damage Conversion Landing Page
 ├── _headers                          # Cloudflare Pages security & caching headers
 ├── robots.txt                        # Public indexing rules
 └── .gitignore                        # Public repository hygiene & guardrails

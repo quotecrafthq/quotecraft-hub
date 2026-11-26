@@ -1703,8 +1703,12 @@
             </a>
 
             <div class="preview-secondary-demo">
-              <span>Also live: standalone roofing squares math</span>
-              <a href="./demos/roof-calculator/" id="previewRoofCalcLink">Roof Pitch &amp; Squares Calculator →</a>
+              <span>More live demos:</span>
+              <span>
+                <a href="./demos/roof-calculator/" id="previewRoofCalcLink">Roof Pitch Calculator</a>
+                &nbsp;·&nbsp;
+                <a href="./demos/roofing-landing/" id="previewLandingDemoLink">Storm &amp; Kitchen Landing Page</a>
+              </span>
             </div>
           </div>
         </aside>
@@ -2151,11 +2155,12 @@
 
             <div class="channel-card">
               <div class="channel-kicker">Explore Live Demos</div>
-              <h3>Test Both Interactive Demos</h3>
-              <p>Try the full 4-step Roofing &amp; Remodeling landing page (with browser photo compression + JSON payload inspector) or our standalone Roof Pitch &amp; Squares Calculator.</p>
+              <h3>Test All 3 Interactive Demos</h3>
+              <p>Inspect the full 4-step Roofing &amp; Remodeling flagship demo (with browser photo compression + JSON payload inspector), standalone Roof Pitch &amp; Squares Calculator, or Storm &amp; Kitchen conversion page.</p>
               <div class="channel-btn-row">
                 <a href="./demos/summit-ridge/" class="btn btn-primary btn-sm" id="contactTryDemoBtn">Flagship 4-Step Demo →</a>
                 <a href="./demos/roof-calculator/" class="btn btn-outline btn-sm" id="contactRoofCalcBtn">Roof Pitch Calculator</a>
+                <a href="./demos/roofing-landing/" class="btn btn-outline btn-sm" id="contactLandingDemoBtn">Storm &amp; Kitchen Page</a>
               </div>
             </div>
           </div>
@@ -2239,6 +2244,7 @@
         <nav class="footer-nav" aria-label="Footer Navigation">
           <a href="./demos/summit-ridge/" id="footerDemoLink">Flagship Demo</a>
           <a href="./demos/roof-calculator/" id="footerRoofCalcLink">Roof Calculator</a>
+          <a href="./demos/roofing-landing/" id="footerLandingDemoLink">Storm &amp; Kitchen Demo</a>
           <a href="#how-it-works">How It Works</a>
           <a href="#pricing">Pricing</a>
           <a href="#agencies">Agency White-Label</a>
@@ -2274,6 +2280,8 @@
         demoUrl: "./demos/summit-ridge/",
         // Live Demo #2 (Technical): Standalone US Roof Pitch, Squares & Waste Factor Estimator
         roofCalcUrl: "./demos/roof-calculator/",
+        // Live Demo #3 (Conversion Page): Kitchen & Storm-Damage Conversion Landing Page
+        landingDemoUrl: "./demos/roofing-landing/",
         // Official Cal.com 15-minute Google Meet booking link
         bookingUrl: "https://cal.com/quotecrafthq/15min",
         // Official studio business Gmail
@@ -2331,6 +2339,7 @@
         const cfg = STUDIO_CONFIG;
         const demoHref = safeUrl(cfg.links.demoUrl, "./demos/summit-ridge/");
         const roofCalcHref = safeUrl(cfg.links.roofCalcUrl, "./demos/roof-calculator/");
+        const landingDemoHref = safeUrl(cfg.links.landingDemoUrl, "./demos/roofing-landing/");
         const bookHref = safeUrl(cfg.links.bookingUrl, "#contact");
         const email = (cfg.links.email || "quotecrafthq@gmail.com").trim();
         const mailtoHref = "mailto:" + email + "?subject=" + encodeURIComponent("QuoteCraft Studio — Instant Quote Calculator Inquiry");
@@ -2375,6 +2384,12 @@
         ["previewRoofCalcLink", "contactRoofCalcBtn", "footerRoofCalcLink"].forEach(function (id) {
           const el = document.getElementById(id);
           if (el) el.setAttribute("href", roofCalcHref);
+        });
+
+        // Storm & Kitchen Conversion Landing Page Demo Links
+        ["previewLandingDemoLink", "contactLandingDemoBtn", "footerLandingDemoLink"].forEach(function (id) {
+          const el = document.getElementById(id);
+          if (el) el.setAttribute("href", landingDemoHref);
         });
 
         // Booking Links (Cal.com / Calendly)
