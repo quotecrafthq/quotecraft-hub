@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Instant US Roof Replacement Quote Calculator — QuoteCraft Studio Live Demo</title>
+  <meta
+    name="description"
+    content="Interactive US roof replacement cost estimator by square footage, roof pitch, material tier, and scope. Built by QuoteCraft Studio on $0/mo serverless architecture."
+  />
+  <meta property="og:title" content="Instant US Roof Replacement Quote Calculator — QuoteCraft Studio" />
+  <meta
+    property="og:description"
+    content="Preview a sub-second mobile-first roof replacement estimator with real US roofing square math, material tiers, and zero-backend lead capture."
+  />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#F5F4EF" />
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23162A45'/%3E%3Cpath d='M14 35L32 19l18 16' stroke='%23E89C73' stroke-width='3.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M21 34v13h22V34' stroke='%23FFFFFF' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+  />
+
+  <style>
+    :root {
+      --bg-canvas: #f5f4ef;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f0eee7;
+      --bg-hover: #faf9f5;
+
+      --ink-primary: #131820;
+      --ink-secondary: #475161;
+      --ink-muted: #697383;
+
+      --border-hairline: #e4e1d8;
+      --border-strong: #cfc9bc;
+
+      --brand-navy: #162a45;
+      --brand-navy-hover: #102036;
+      --brand-navy-soft: #edf1f6;
+
+      --accent-copper: #b94a1f;
+      --accent-copper-hover: #9a3c17;
+      --accent-copper-soft: #fdf2ed;
+
+      --status-live: #157a44;
+      --status-live-bg: #ecf8f1;
+      --status-warn: #9a5b13;
+      --status-warn-bg: #fef7ea;
+      --status-err: #b42318;
+      --status-err-bg: #fef3f2;
+
+      --shadow-card: 0 1px 2px rgba(19, 24, 32, 0.04), 0 12px 28px -16px rgba(19, 24, 32, 0.12);
+      --shadow-cta: 0 2px 6px rgba(185, 74, 31, 0.22), 0 10px 22px -10px rgba(185, 74, 31, 0.36);
+
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.55;
+      color: var(--ink-primary);
+      background-color: var(--bg-canvas);
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--brand-navy);
+      outline-offset: 2px;
+    }
+
+    .tabular {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Demo Top Ribbon */
+    .studio-ribbon {
+      background: var(--brand-navy);
+      color: rgba(255, 255, 255, 0.92);
+      font-size: 12.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .studio-ribbon-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 9px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ribbon-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+
+    .ribbon-badge {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 5px;
+      background: rgba(185, 74, 31, 0.92);
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .ribbon-text {
+      color: rgba(255, 255, 255, 0.88);
+    }
+
+    .ribbon-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .ribbon-link {
+      font-weight: 600;
+      color: #ffffff;
+      opacity: 0.9;
+      transition: opacity 150ms ease;
+    }
+
+    .ribbon-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .ribbon-cta {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      font-size: 12px;
+      font-weight: 600;
+      color: #ffffff;
+      transition: background-color 150ms ease;
+    }
+
+    .ribbon-cta:hover {
+      background: rgba(255, 255, 255, 0.24);
+    }
+
+    /* Main Shell */
+    .page-shell {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 24px 18px 88px;
+    }
+
+    /* Brand Header */
+    .contractor-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 20px;
+      padding: 0 2px;
+    }
+
+    .contractor-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contractor-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: var(--brand-navy);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(22, 42, 69, 0.18);
+    }
+
+    .contractor-name {
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      color: var(--ink-primary);
+      line-height: 1.2;
+    }
+
+    .contractor-area {
+      font-size: 12.5px;
+      color: var(--ink-muted);
+      line-height: 1.3;
+    }
+
+    .header-meta-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .trust-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-secondary);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+
+    .trust-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--status-live);
+    }
+
+    /* Hero Intro Strip */
+    .intro-sheet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-top: 3px solid var(--brand-navy);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 24px 26px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .intro-copy {
+      max-width: 640px;
+    }
+
+    .intro-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-copper);
+      margin: 0 0 8px;
+    }
+
+    .intro-title {
+      margin: 0 0 8px;
+      font-size: clamp(22px, 3.6vw, 31px);
+      font-weight: 750;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+    }
+
+    .intro-desc {
+      margin: 0;
+      font-size: 14.5px;
+      color: var(--ink-secondary);
+      line-height: 1.55;
+    }
+
+    .intro-metrics {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .intro-stat {
+      padding-left: 14px;
+      border-left: 2px solid var(--border-hairline);
+    }
+
+    .intro-stat-val {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      line-height: 1.2;
+    }
+
+    .intro-stat-lbl {
+      font-size: 12px;
+      color: var(--ink-muted);
+    }
+
+    /* 2-Column Calculator Workspace */
+    .calc-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.42fr) minmax(320px, 0.95fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    /* Surfaces */
+    .sheet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .sheet + .sheet {
+      margin-top: 16px;
+    }
+
+    .step-header {
+      padding: 18px 22px 14px;
+      border-bottom: 1px solid var(--border-hairline);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .step-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--accent-copper);
+      background: var(--accent-copper-soft);
+      border: 1px solid #f2d1c1;
+      padding: 3px 7px;
+      border-radius: 6px;
+    }
+
+    .step-title {
+      margin: 0;
+      font-size: 15.5px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--ink-primary);
+    }
+
+    .step-tag {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+    }
+
+    .step-body {
+      padding: 20px 22px 22px;
+    }
+
+    /* Step 1: Roof Size Controls */
+    .area-display-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .area-readout {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .area-number {
+      font-family: var(--font-mono);
+      font-size: clamp(26px, 4vw, 32px);
+      font-weight: 750;
+      letter-spacing: -0.03em;
+      color: var(--brand-navy);
+      line-height: 1;
+    }
+
+    .area-unit {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-secondary);
+    }
+
+    .squares-pill {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--brand-navy);
+      background: var(--brand-navy-soft);
+      border: 1px solid #d5dfe9;
+      padding: 5px 10px;
+      border-radius: 6px;
+    }
+
+    .slider-wrap {
+      margin-bottom: 14px;
+    }
+
+    .range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--border-hairline);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-copper);
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(19, 24, 32, 0.28);
+      transition: transform 140ms ease, background-color 140ms ease;
+    }
+
+    .range-slider::-webkit-slider-thumb:hover {
+      background: var(--accent-copper-hover);
+      transform: scale(1.08);
+    }
+
+    .range-slider::-moz-range-thumb {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-copper);
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(19, 24, 32, 0.28);
+      transition: transform 140ms ease, background-color 140ms ease;
+    }
+
+    .slider-scale {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    .preset-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .preset-btn {
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-subtle);
+      text-align: center;
+      transition: all 150ms ease;
+    }
+
+    .preset-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .preset-btn.active {
+      background: var(--brand-navy);
+      border-color: var(--brand-navy);
+      color: #ffffff;
+    }
+
+    .preset-sqft {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .preset-lbl {
+      display: block;
+      font-size: 11px;
+      opacity: 0.78;
+    }
+
+    .sub-control-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      margin: 0 0 8px;
+    }
+
+    .sub-control-hint {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-muted);
+    }
+
+    .segmented-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .seg-btn {
+      padding: 10px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      text-align: left;
+      transition: all 150ms ease;
+    }
+
+    .seg-btn:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .seg-btn[aria-pressed="true"] {
+      border-color: var(--brand-navy);
+      background: var(--brand-navy-soft);
+      box-shadow: inset 0 0 0 1px var(--brand-navy);
+    }
+
+    .seg-title {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 650;
+      color: var(--ink-primary);
+    }
+
+    .seg-sub {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 2px;
+    }
+
+    .helper-callout {
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      line-height: 1.45;
+    }
+
+    /* Step 2: Roof Pitch Grid with SVG Cross-Sections */
+    .pitch-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .pitch-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 14px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      text-align: left;
+      transition: all 150ms ease;
+    }
+
+    .pitch-card:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .pitch-card[aria-pressed="true"] {
+      border-color: var(--brand-navy);
+      background: var(--brand-navy-soft);
+      box-shadow: inset 0 0 0 1px var(--brand-navy);
+    }
+
+    .pitch-svg-box {
+      width: 52px;
+      height: 44px;
+      border-radius: 8px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .pitch-card[aria-pressed="true"] .pitch-svg-box {
+      background: #ffffff;
+      border-color: #c2d1e2;
+    }
+
+    .pitch-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-primary);
+      line-height: 1.25;
+    }
+
+    .pitch-ratio {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--accent-copper);
+      margin-top: 2px;
+    }
+
+    .pitch-note {
+      font-size: 12px;
+      color: var(--ink-secondary);
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+
+    /* Step 3: Material Tier List */
+    .material-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .material-card {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      text-align: left;
+      transition: all 150ms ease;
+    }
+
+    .material-card:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .material-card[aria-pressed="true"] {
+      border-color: var(--brand-navy);
+      background: var(--brand-navy-soft);
+      box-shadow: inset 0 0 0 1px var(--brand-navy);
+    }
+
+    .mat-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .mat-radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border-strong);
+      margin-top: 2px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      background: #ffffff;
+    }
+
+    .material-card[aria-pressed="true"] .mat-radio {
+      border-color: var(--brand-navy);
+    }
+
+    .mat-radio::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--brand-navy);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 140ms ease;
+    }
+
+    .material-card[aria-pressed="true"] .mat-radio::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .mat-title-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .mat-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .mat-tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--accent-copper-soft);
+      color: var(--accent-copper);
+    }
+
+    .mat-desc {
+      font-size: 12.5px;
+      color: var(--ink-secondary);
+      margin-top: 3px;
+      line-height: 1.4;
+    }
+
+    .mat-specs {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 4px;
+    }
+
+    .mat-price-col {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .mat-rate {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      white-space: nowrap;
+    }
+
+    .mat-unit {
+      font-size: 11px;
+      color: var(--ink-muted);
+    }
+
+    /* Step 4: Tear-Off, Add-Ons & Timeline */
+    .scope-block + .scope-block {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border-hairline);
+    }
+
+    .addon-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .addon-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-hairline);
+      background: var(--bg-surface);
+      cursor: pointer;
+      transition: background-color 140ms ease, border-color 140ms ease;
+    }
+
+    .addon-row:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .addon-row.checked {
+      background: var(--brand-navy-soft);
+      border-color: var(--brand-navy);
+    }
+
+    .addon-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .addon-checkbox {
+      width: 18px;
+      height: 18px;
+      margin: 2px 0 0;
+      accent-color: var(--brand-navy);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+
+    .addon-name {
+      font-size: 13.5px;
+      font-weight: 650;
+      color: var(--ink-primary);
+    }
+
+    .addon-desc {
+      font-size: 12px;
+      color: var(--ink-secondary);
+    }
+
+    .addon-cost {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 650;
+      color: var(--brand-navy);
+      white-space: nowrap;
+    }
+
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+    }
+
+    /* Right Sticky Estimate Summary Panel */
+    .summary-column {
+      position: sticky;
+      top: 18px;
+    }
+
+    .summary-sheet {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-top: 4px solid var(--brand-navy);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .summary-top {
+      padding: 20px 22px 18px;
+      background: linear-gradient(180deg, #faf9f5 0%, #ffffff 100%);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .summary-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .summary-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--status-live);
+      background: var(--status-live-bg);
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+
+    .estimate-range {
+      font-family: var(--font-mono);
+      font-size: clamp(27px, 3vw, 33px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink-primary);
+      line-height: 1.12;
+      margin: 0 0 8px;
+    }
+
+    .financing-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 11px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-navy-soft);
+      border: 1px solid #d5dfe9;
+      font-size: 12.5px;
+      color: var(--brand-navy);
+    }
+
+    .financing-amount {
+      font-family: var(--font-mono);
+      font-weight: 700;
+    }
+
+    .summary-specs-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .s-spec {
+      padding: 12px 12px;
+      border-right: 1px solid var(--border-hairline);
+      text-align: center;
+    }
+
+    .s-spec:last-child {
+      border-right: none;
+    }
+
+    .s-spec-val {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--brand-navy);
+    }
+
+    .s-spec-lbl {
+      font-size: 11px;
+      color: var(--ink-muted);
+      margin-top: 1px;
+    }
+
+    .breakdown-box {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+
+    .breakdown-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin: 0 0 10px;
+    }
+
+    .breakdown-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .breakdown-key {
+      color: var(--ink-secondary);
+    }
+
+    .breakdown-val {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .summary-actions {
+      padding: 18px 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cta-primary {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: var(--accent-copper);
+      color: #ffffff;
+      border: 1px solid transparent;
+      font-size: 14.5px;
+      font-weight: 700;
+      box-shadow: var(--shadow-cta);
+      transition: transform 150ms ease, background-color 150ms ease;
+    }
+
+    .cta-primary:hover {
+      background: var(--accent-copper-hover);
+      transform: translateY(-1px);
+    }
+
+    .cta-secondary-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-hairline);
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-primary);
+      transition: background-color 140ms ease, border-color 140ms ease;
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-hover);
+      border-color: var(--border-strong);
+    }
+
+    .summary-disclaimer {
+      font-size: 11.5px;
+      color: var(--ink-muted);
+      line-height: 1.45;
+      margin: 2px 0 0;
+    }
+
+    /* Lead Capture Section */
+    .lead-sheet {
+      margin-top: 20px;
+      border-top: 3px solid var(--accent-copper);
+    }
+
+    .lead-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .field-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .field-label {
+      font-size: 12.5px;
+      font-weight: 650;
+      color: var(--ink-primary);
+    }
+
+    .req-star {
+      color: var(--accent-copper);
+    }
+
+    .field-input,
+    .field-select,
+    .field-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-strong);
+      background: var(--bg-surface);
+      font-size: 14px;
+      color: var(--ink-primary);
+      transition: border-color 140ms ease, box-shadow 140ms ease;
+    }
+
+    .field-input:focus,
+    .field-select:focus,
+    .field-textarea:focus {
+      outline: none;
+      border-color: var(--brand-navy);
+      box-shadow: 0 0 0 3px rgba(22, 42, 69, 0.1);
+    }
+
+    .field-input.invalid {
+      border-color: var(--status-err);
+      background: var(--status-err-bg);
+    }
+
+    .field-error {
+      font-size: 12px;
+      color: var(--status-err);
+      display: none;
+    }
+
+    .field-error.visible {
+      display: block;
+    }
+
+    .field-textarea {
+      min-height: 76px;
+      resize: vertical;
+    }
+
+    .lead-submit-row {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .lead-privacy-note {
+      font-size: 12px;
+      color: var(--ink-muted);
+      max-width: 44ch;
+    }
+
+    .lead-submit-btn {
+      padding: 13px 22px;
+      border-radius: var(--radius-md);
+      background: var(--accent-copper);
+      color: #ffffff;
+      border: 1px solid transparent;
+      font-size: 14.5px;
+      font-weight: 700;
+      box-shadow: var(--shadow-cta);
+      transition: transform 150ms ease, background-color 150ms ease;
+    }
+
+    .lead-submit-btn:hover {
+      background: var(--accent-copper-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Quote Receipt (Zero-Backend Confirmation State) */
+    .receipt-box {
+      display: none;
+      padding: 22px;
+      background: var(--status-live-bg);
+      border: 1px solid #b9e2c9;
+      border-radius: var(--radius-md);
+    }
+
+    .receipt-box.visible {
+      display: block;
+    }
+
+    .receipt-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .receipt-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 750;
+      color: var(--status-live);
+    }
+
+    .receipt-ref {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--brand-navy);
+      background: #ffffff;
+      border: 1px solid #c6dfd0;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+
+    .receipt-preview {
+      background: #ffffff;
+      border: 1px solid #cde5d6;
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--ink-primary);
+      white-space: pre-wrap;
+      margin-bottom: 14px;
+      overflow-x: auto;
+    }
+
+    .receipt-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-navy {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 15px;
+      border-radius: var(--radius-sm);
+      background: var(--brand-navy);
+      color: #ffffff;
+      border: 1px solid transparent;
+      font-size: 13px;
+      font-weight: 650;
+      transition: background-color 140ms ease;
+    }
+
+    .btn-navy:hover {
+      background: var(--brand-navy-hover);
+    }
+
+    /* Studio Showcase Footer Banner */
+    .studio-banner {
+      margin-top: 24px;
+      background: var(--brand-navy);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .studio-banner-kicker {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: #e89c73;
+      margin: 0 0 5px;
+    }
+
+    .studio-banner-title {
+      margin: 0 0 4px;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .studio-banner-sub {
+      margin: 0;
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 56ch;
+    }
+
+    .studio-banner-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-copper-solid {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-copper);
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 650;
+      transition: background-color 140ms ease;
+    }
+
+    .btn-copper-solid:hover {
+      background: var(--accent-copper-hover);
+    }
+
+    .btn-ghost-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: background-color 140ms ease;
+    }
+
+    .btn-ghost-light:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .page-footer {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--ink-muted);
+    }
+
+    /* Mobile Sticky Bottom Estimate Bar */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-top: 1px solid var(--border-strong);
+      padding: 10px 16px;
+      z-index: 90;
+      box-shadow: 0 -8px 24px rgba(19, 24, 32, 0.12);
+    }
+
+    .mobile-bar-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .mobile-bar-lbl {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+    }
+
+    .mobile-bar-price {
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--ink-primary);
+      line-height: 1.15;
+    }
+
+    .mobile-bar-cta {
+      padding: 11px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-copper);
+      color: #ffffff;
+      border: none;
+      font-size: 13.5px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 76px;
+      transform: translateX(-50%) translateY(14px);
+      background: var(--ink-primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 550;
+      padding: 10px 16px;
+      border-radius: 9px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      z-index: 200;
+      white-space: nowrap;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 880px) {
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-column {
+        position: static;
+      }
+
+      .mobile-sticky-bar {
+        display: block;
+      }
+
+      .page-shell {
+        padding-bottom: 100px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .page-shell {
+        padding: 18px 14px 100px;
+      }
+
+      .intro-sheet,
+      .step-body,
+      .step-header,
+      .summary-top,
+      .breakdown-box,
+      .summary-actions {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .preset-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .segmented-grid,
+      .pitch-grid,
+      .timeline-grid,
+      .lead-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .material-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .mat-price-col {
+        text-align: left;
+        padding-left: 30px;
+      }
+
+      .lead-submit-btn {
+        width: 100%;
+      }
+    }
+
+    @media print {
+      .studio-ribbon,
+      .mobile-sticky-bar,
+      .studio-banner,
+      .summary-actions,
+      .receipt-actions,
+      .toast {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff;
+        background-image: none;
+      }
+
+      .calc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sheet,
+      .summary-sheet,
+      .intro-sheet {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Studio Interactive Demo Ribbon -->
+  <div class="studio-ribbon" id="studio-ribbon">
+    <div class="studio-ribbon-inner">
+      <div class="ribbon-left">
+        <span class="ribbon-badge">Live Demo #1</span>
+        <span class="ribbon-text">Built by <strong>QuoteCraft Studio</strong> · $0/mo Serverless Architecture</span>
+      </div>
+      <div class="ribbon-actions">
+        <a class="ribbon-link" id="ribbon-hub-link" href="../../">&larr; Contact Hub</a>
+        <a class="ribbon-cta" id="ribbon-book-link" href="#studio-cta">Get This For Your Business</a>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-shell">
+    <!-- Fictional US Contractor Demo Header -->
+    <header class="contractor-header">
+      <div class="contractor-lockup">
+        <div class="contractor-mark" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 12.5 12 4.5l9 8" stroke="#E89C73" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M6.5 11.5V19h11v-7.5" stroke="#FFFFFF" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M10 19v-4.5h4V19" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div>
+          <div class="contractor-name" id="demo-company-name">Summit Ridge Roofing</div>
+          <div class="contractor-area" id="demo-service-area">Austin &amp; Central Texas · Demo Sample Showcase</div>
+        </div>
+      </div>
+      <div class="header-meta-group">
+        <span class="trust-chip">
+          <span class="trust-dot" aria-hidden="true"></span>
+          <span>2026 US Market Rates</span>
+        </span>
+        <span class="trust-chip">Zero Login · Instant Range</span>
+      </div>
+    </header>
+
+    <!-- Intro Header Sheet -->
+    <section class="intro-sheet" aria-labelledby="calc-heading">
+      <div class="intro-copy">
+        <p class="intro-kicker">Instant US Roof Replacement Estimator</p>
+        <h1 class="intro-title" id="calc-heading">Calculate Your Roof Replacement Cost in 45 Seconds.</h1>
+        <p class="intro-desc">
+          Adjust roof square footage, roof pitch, material tier, and tear-off scope below to see an honest US installed ballpark range—complete with roofing squares and monthly financing preview.
+        </p>
+      </div>
+      <div class="intro-metrics" aria-label="Calculator highlights">
+        <div class="intro-stat">
+          <div class="intro-stat-val">100 sq ft</div>
+          <div class="intro-stat-lbl">= 1 Roofing Square</div>
+        </div>
+        <div class="intro-stat">
+          <div class="intro-stat-val">10–15%</div>
+          <div class="intro-stat-lbl">Auto Waste Factor</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main 2-Column Estimator Workspace -->
+    <div class="calc-grid">
+      <!-- Left Column: Interactive Steps -->
+      <div class="steps-column">
+        <!-- Step 01: Roof Area & Stories -->
+        <section class="sheet" aria-labelledby="step1-title">
+          <div class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-num">01</span>
+              <h2 class="step-title" id="step1-title">Roof Area &amp; Home Height</h2>
+            </div>
+            <span class="step-tag" id="step1-tag">2,200 sq ft</span>
+          </div>
+          <div class="step-body">
+            <div class="area-display-row">
+              <div class="area-readout">
+                <span class="area-number tabular" id="area-value-display">2,200</span>
+                <span class="area-unit">sq ft roof area</span>
+              </div>
+              <span class="squares-pill tabular" id="squares-display">22.0 Base Squares</span>
+            </div>
+
+            <div class="slider-wrap">
+              <label for="roof-area-slider" class="sub-control-label" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">
+                Estimated Roof Area in Square Feet
+              </label>
+              <input
+                type="range"
+                id="roof-area-slider"
+                class="range-slider"
+                min="1000"
+                max="5500"
+                step="50"
+                value="2200"
+              />
+              <div class="slider-scale tabular">
+                <span>1,000 sq ft</span>
+                <span>2,200 sq ft (US Avg)</span>
+                <span>3,800 sq ft</span>
+                <span>5,500 sq ft</span>
+              </div>
+            </div>
+
+            <div class="preset-row" id="area-presets" aria-label="Quick roof size presets"></div>
+
+            <div class="sub-control-label">
+              <span>Home Height / Access</span>
+              <span class="sub-control-hint">Affects staging &amp; safety setup</span>
+            </div>
+            <div class="segmented-grid" id="stories-grid" role="group" aria-label="Home height"></div>
+
+            <div class="helper-callout">
+              <strong>Unsure of your roof area?</strong> For a typical US single-story home, roof area is roughly <strong>1.15× to 1.25×</strong> your heated living square footage (accounting for eaves, overhangs, and garage).
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 02: Roof Pitch -->
+        <section class="sheet" aria-labelledby="step2-title">
+          <div class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-num">02</span>
+              <h2 class="step-title" id="step2-title">Roof Pitch (Slope)</h2>
+            </div>
+            <span class="step-tag" id="step2-tag">5/12 – 7/12</span>
+          </div>
+          <div class="step-body">
+            <div class="pitch-grid" id="pitch-grid" role="group" aria-label="Roof pitch"></div>
+          </div>
+        </section>
+
+        <!-- Step 03: Roofing Material Tier -->
+        <section class="sheet" aria-labelledby="step3-title">
+          <div class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-num">03</span>
+              <h2 class="step-title" id="step3-title">Roofing Material Tier</h2>
+            </div>
+            <span class="step-tag" id="step3-tag">Architectural Shingle</span>
+          </div>
+          <div class="step-body">
+            <div class="material-list" id="material-list" role="group" aria-label="Roofing material tier"></div>
+          </div>
+        </section>
+
+        <!-- Step 04: Tear-Off, Upgrades & Timeline -->
+        <section class="sheet" aria-labelledby="step4-title">
+          <div class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-num">04</span>
+              <h2 class="step-title" id="step4-title">Tear-Off Scope, Upgrades &amp; Timeline</h2>
+            </div>
+            <span class="step-tag">Optional</span>
+          </div>
+          <div class="step-body">
+            <div class="scope-block">
+              <div class="sub-control-label">
+                <span>Existing Roof Removal</span>
+                <span class="sub-control-hint">Disposal &amp; dumpster included</span>
+              </div>
+              <div class="segmented-grid" id="tearoff-grid" role="group" aria-label="Tear-off layers"></div>
+            </div>
+
+            <div class="scope-block">
+              <div class="sub-control-label">
+                <span>Optional System Upgrades</span>
+                <span class="sub-control-hint">Add to estimate live</span>
+              </div>
+              <div class="addon-list" id="addons-list"></div>
+            </div>
+
+            <div class="scope-block">
+              <div class="sub-control-label">
+                <span>Target Project Timeline</span>
+                <span class="sub-control-hint">Helps prioritize inspection slots</span>
+              </div>
+              <div class="timeline-grid" id="timeline-grid" role="group" aria-label="Target timeline"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Step 05: Zero-Backend Lead Capture Form -->
+        <section class="sheet lead-sheet" id="lead-capture-section" aria-labelledby="lead-heading">
+          <div class="step-header">
+            <div class="step-title-wrap">
+              <span class="step-num">05</span>
+              <h2 class="step-title" id="lead-heading">Lock In Your Exact On-Site Estimate</h2>
+            </div>
+            <span class="step-tag">Zero-Backend Demo</span>
+          </div>
+          <div class="step-body">
+            <form id="lead-form" novalidate>
+              <div class="lead-grid">
+                <div class="field-group">
+                  <label class="field-label" for="lead-name">Full Name <span class="req-star">*</span></label>
+                  <input id="lead-name" name="name" type="text" class="field-input" placeholder="e.g., Michael Carter" autocomplete="name" required />
+                  <span class="field-error" id="err-name">Please enter your name.</span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label" for="lead-email">Email Address <span class="req-star">*</span></label>
+                  <input id="lead-email" name="email" type="email" class="field-input" placeholder="e.g., michael@example.com" autocomplete="email" required />
+                  <span class="field-error" id="err-email">Please enter a valid email address.</span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label" for="lead-zip">Property ZIP Code <span class="req-star">*</span></label>
+                  <input id="lead-zip" name="zip" type="text" inputmode="numeric" maxlength="10" class="field-input" placeholder="e.g., 78704" required />
+                  <span class="field-error" id="err-zip">Please enter a valid 5-digit US ZIP code.</span>
+                </div>
+
+                <div class="field-group">
+                  <label class="field-label" for="lead-city">City &amp; State (optional)</label>
+                  <input id="lead-city" name="city" type="text" class="field-input" placeholder="e.g., Austin, TX" />
+                </div>
+
+                <div class="field-group full">
+                  <label class="field-label" for="lead-address">Property Street Address (optional — for aerial measurement)</label>
+                  <input id="lead-address" name="address" type="text" class="field-input" placeholder="e.g., 1420 Barton Springs Rd" />
+                </div>
+
+                <div class="field-group full">
+                  <label class="field-label" for="lead-notes">Roof Notes (leaks, storm date, HOA color rules)</label>
+                  <textarea id="lead-notes" name="notes" class="field-textarea" placeholder="Optional: Mention recent hail damage, chimney flashing, or preferred inspection day..."></textarea>
+                </div>
+              </div>
+
+              <div class="lead-submit-row">
+                <div class="lead-privacy-note">
+                  No spam calls or third-party lead resellers. Generates an instant itemized quote ticket ready to email, copy, or save as PDF.
+                </div>
+                <button type="submit" class="lead-submit-btn" id="lead-submit-btn">
+                  Generate My Quote Ticket &rarr;
+                </button>
+              </div>
+            </form>
+
+            <!-- Zero-Backend Generated Lead & Quote Receipt -->
+            <div class="receipt-box" id="receipt-box" aria-live="polite">
+              <div class="receipt-head">
+                <div>
+                  <h3 class="receipt-title">Quote Ticket Generated — Ready to Route</h3>
+                  <div style="font-size: 13px; color: var(--ink-secondary); margin-top: 2px;">
+                    In production for a roofing client, this structured lead routes directly to their inbox &amp; Google Sheet at $0/mo.
+                  </div>
+                </div>
+                <span class="receipt-ref tabular" id="receipt-ref">#QC-ROOF-0000</span>
+              </div>
+              <pre class="receipt-preview" id="receipt-preview"></pre>
+              <div class="receipt-actions">
+                <a class="btn-navy" id="receipt-mailto-btn" href="#">Send via Email App</a>
+                <button type="button" class="btn-secondary" id="receipt-copy-btn">Copy Full Quote</button>
+                <button type="button" class="btn-secondary" id="receipt-print-btn">Print / Save PDF</button>
+                <button type="button" class="btn-secondary" id="receipt-edit-btn">Edit Details</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column: Sticky Live Estimate Summary -->
+      <aside class="summary-column" aria-label="Live roof replacement estimate">
+        <div class="summary-sheet">
+          <div class="summary-top">
+            <div class="summary-kicker">
+              <span class="summary-label">Estimated Installed Range</span>
+              <span class="live-pill">Live Calc</span>
+            </div>
+            <div class="estimate-range tabular" id="summary-range">$14,100 – $17,300</div>
+            <div class="financing-line">
+              <span>Est. Financing (120 mo · 8.99%)</span>
+              <span class="financing-amount tabular" id="summary-monthly">$179 – $219/mo</span>
+            </div>
+          </div>
+
+          <div class="summary-specs-strip">
+            <div class="s-spec">
+              <div class="s-spec-val tabular" id="spec-eff-squares">24.6 sq</div>
+              <div class="s-spec-lbl">Incl. Waste</div>
+            </div>
+            <div class="s-spec">
+              <div class="s-spec-val" id="spec-pitch">5/12–7/12</div>
+              <div class="s-spec-lbl">Roof Pitch</div>
+            </div>
+            <div class="s-spec">
+              <div class="s-spec-val" id="spec-lifespan">30–50 yr</div>
+              <div class="s-spec-lbl">Lifespan</div>
+            </div>
+          </div>
+
+          <div class="breakdown-box">
+            <h3 class="breakdown-title">Transparent Itemized Breakdown</h3>
+            <ul class="breakdown-list" id="breakdown-list"></ul>
+          </div>
+
+          <div class="summary-actions">
+            <a href="#lead-capture-section" class="cta-primary" id="summary-lock-cta">
+              <span>Lock In Exact On-Site Quote</span>
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <div class="cta-secondary-row">
+              <button type="button" class="btn-secondary" id="summary-copy-btn">Copy Estimate</button>
+              <button type="button" class="btn-secondary" id="summary-print-btn">Print / PDF</button>
+            </div>
+            <p class="summary-disclaimer">
+              *Ballpark US market estimate covering standard tear-off, synthetic underlayment, starter/ridge caps, flashing, and installation. Final pricing confirmed after on-site decking inspection.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- QuoteCraft Studio Conversion Banner (For US Contractors Viewing This Demo) -->
+    <section class="studio-banner" id="studio-cta" aria-label="QuoteCraft Studio custom build callout">
+      <div>
+        <p class="studio-banner-kicker">QuoteCraft Studio · Built For US Contractors</p>
+        <h2 class="studio-banner-title">Want this calculator branded to your roofing company?</h2>
+        <p class="studio-banner-sub">
+          We tailor pricing rules to your market, match your brand colors, and wire instant email + Google Sheets lead alerts on $0/mo serverless hosting—delivered in 5–10 days with 100% code ownership.
+        </p>
+      </div>
+      <div class="studio-banner-actions">
+        <a class="btn-copper-solid" id="banner-book-btn" href="https://cal.com/quotecrafthq/15min" target="_blank" rel="noopener noreferrer">
+          <span>Book a Free 15-Min Call</span>
+          <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="btn-ghost-light" id="banner-hub-btn" href="../../">
+          <span>&larr; Back to Contact Hub</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="page-footer">
+      <div id="footer-credit">Interactive Demo by Wahyu Pamungkas — Founder, QuoteCraft Studio · $0/mo Serverless Architecture</div>
+    </footer>
+  </main>
+
+  <!-- Mobile Sticky Bottom Bar -->
+  <div class="mobile-sticky-bar" aria-label="Quick estimate summary">
+    <div class="mobile-bar-inner">
+      <div>
+        <div class="mobile-bar-lbl" id="mobile-bar-meta">Architectural · 24.6 sq</div>
+        <div class="mobile-bar-price tabular" id="mobile-bar-price">$14,100 – $17,300</div>
+      </div>
+      <a href="#lead-capture-section" class="mobile-bar-cta">Lock In Quote &rarr;</a>
+    </div>
+  </div>
+
+  <!-- Toast Feedback -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    // =========================================================================
+    // CALCULATOR_CONFIG — UBAH BRAND, HARGA PASAR & KONTAK STUDIO DI BLOK INI
+    // =========================================================================
+    const CALCULATOR_CONFIG = {
+      demoCompany: {
+        name: "Summit Ridge Roofing",
+        serviceArea: "Austin & Central Texas · Interactive Sample Showcase"
+      },
+
+      studio: {
+        brandName: "QuoteCraft Studio",
+        founderSignature: "Wahyu Pamungkas — Founder, QuoteCraft Studio",
+        // Sinkronkan dengan Gmail Studio & Cal.com final Anda
+        contactEmail: "quotecrafthq@gmail.com",
+        bookingUrl: "https://cal.com/quotecrafthq/15min",
+        // Relative "../../" otomatis kembali ke root Contact Hub saat di-deploy bersama di Cloudflare Pages
+        hubUrl: "../../",
+        showHubBackLink: true,
+        showStudioRibbon: true,
+        showStudioBanner: true
+      },
+
+      // Opsional untuk versi produksi klien (Google Apps Script / Formspree / Worker endpoint)
+      // Kosongkan "" untuk mode zero-backend murni (email draft + copy + PDF ticket)
+      leadRouting: {
+        webhookUrl: ""
+      },
+
+      financing: {
+        aprAnnual: 0.0899,
+        termMonths: 120
+      },
+
+      areaPresets: [
+        { sqft: 1500, label: "Compact" },
+        { sqft: 2200, label: "US Avg" },
+        { sqft: 3000, label: "Large" },
+        { sqft: 4200, label: "Estate" }
+      ],
+
+      stories: [
+        { id: "1-story", label: "1 Story", sub: "Standard access", multiplier: 1.0 },
+        { id: "2-story", label: "2 Stories", sub: "+7% staging", multiplier: 1.07 },
+        { id: "3-story", label: "3+ / Complex", sub: "+15% safety", multiplier: 1.15 }
+      ],
+
+      pitches: [
+        {
+          id: "low",
+          name: "Low / Walkable",
+          ratio: "3/12 – 4/12",
+          note: "Easy walkability · 10% waste",
+          multiplier: 1.0,
+          wasteFactor: 1.1,
+          svgPath: "M6 31 L26 22 L46 31"
+        },
+        {
+          id: "standard",
+          name: "Standard Gable",
+          ratio: "5/12 – 7/12",
+          note: "Most US homes · 12% waste",
+          multiplier: 1.09,
+          wasteFactor: 1.12,
+          svgPath: "M6 32 L26 16 L46 32"
+        },
+        {
+          id: "steep",
+          name: "Steep Slope",
+          ratio: "8/12 – 10/12",
+          note: "Harness & steep labor · 14% waste",
+          multiplier: 1.22,
+          wasteFactor: 1.14,
+          svgPath: "M6 34 L26 11 L46 34"
+        },
+        {
+          id: "very-steep",
+          name: "Very Steep / Cut-Up",
+          ratio: "11/12+",
+          note: "Scaffolding & valleys · 16% waste",
+          multiplier: 1.36,
+          wasteFactor: 1.16,
+          svgPath: "M8 35 L26 7 L44 35"
+        }
+      ],
+
+      // Realistic 2026 US installed market ranges (USD per roof sq ft, before steep/story adjustments)
+      materials: [
+        {
+          id: "3tab",
+          name: "3-Tab Economy Asphalt",
+          tag: "",
+          description: "Entry-level fiberglass shingle for rental refreshes or budget-conscious replacements.",
+          specs: "20–25 yr lifespan · 60–70 mph wind rating",
+          lifespan: "20–25 yr",
+          rateLow: 4.15,
+          rateHigh: 4.95
+        },
+        {
+          id: "architectural",
+          name: "Architectural Asphalt Shingle",
+          tag: "Most Popular",
+          description: "Dimensional laminate shingles (GAF Timberline HDZ / Owens Corning Duration class) with synthetic underlayment.",
+          specs: "30–50 yr lifespan · 130 mph wind rating",
+          lifespan: "30–50 yr",
+          rateLow: 5.25,
+          rateHigh: 6.45
+        },
+        {
+          id: "impact",
+          name: "Class 4 Impact-Resistant Shingle",
+          tag: "Hail Discount",
+          description: "SBS rubberized impact-resistant shingle built for US hail zones; often qualifies for homeowner insurance discounts.",
+          specs: "50 yr limited · UL 2218 Class 4 impact rated",
+          lifespan: "50 yr",
+          rateLow: 6.9,
+          rateHigh: 8.35
+        },
+        {
+          id: "metal",
+          name: "Standing Seam Metal (24-Gauge)",
+          tag: "High ROI",
+          description: "Concealed-fastener architectural steel panels with kynar finish—maximum longevity and energy reflectivity.",
+          specs: "50+ yr lifespan · 140+ mph wind · Energy Star",
+          lifespan: "50+ yr",
+          rateLow: 10.4,
+          rateHigh: 13.0
+        },
+        {
+          id: "tile",
+          name: "Concrete / Clay Architectural Tile",
+          tag: "Premium",
+          description: "Heavyweight Spanish or flat concrete/clay tile system with upgraded high-temp ice & water shield.",
+          specs: "50–75 yr lifespan · Fire Class A",
+          lifespan: "50–75 yr",
+          rateLow: 12.6,
+          rateHigh: 15.8
+        }
+      ],
+
+      tearOffOptions: [
+        {
+          id: "1-layer",
+          label: "1 Layer Tear-Off",
+          sub: "Included in base",
+          perSqftLow: 0,
+          perSqftHigh: 0
+        },
+        {
+          id: "2-layer",
+          label: "2 Layers Tear-Off",
+          sub: "+$0.85–$1.15/sq ft",
+          perSqftLow: 0.85,
+          perSqftHigh: 1.15
+        },
+        {
+          id: "bare-deck",
+          label: "New / Bare Deck",
+          sub: "-$0.60/sq ft credit",
+          perSqftLow: -0.6,
+          perSqftHigh: -0.55
+        }
+      ],
+
+      addons: [
+        {
+          id: "gutters",
+          name: "Seamless 5\" Aluminum Gutters & Downspouts",
+          description: "Full perimeter seamless gutter replacement matched to fascia trim.",
+          costLow: 1450,
+          costHigh: 2200
+        },
+        {
+          id: "ventilation",
+          name: "Ridge Vent & Intake Attic Ventilation Upgrade",
+          description: "Continuous baffled ridge vent to reduce summer attic heat & protect shingle warranty.",
+          costLow: 650,
+          costHigh: 1050
+        },
+        {
+          id: "skylight",
+          name: "Skylight Replacement & Curb Flashing (1 Unit)",
+          description: "Double-pane Low-E deck-mounted skylight with manufacturer flashing kit.",
+          costLow: 1200,
+          costHigh: 1750
+        },
+        {
+          id: "decking",
+          name: "Allowance for 4 Damaged Plywood Decking Sheets",
+          description: "Proactive buffer for rotted OSB/plywood sheathing discovered after tear-off.",
+          costLow: 380,
+          costHigh: 520
+        },
+        {
+          id: "insurance",
+          name: "Storm / Hail Photo Documentation Package",
+          description: "Date-stamped roof elevation & soft-metal report formatted for US insurance adjusters.",
+          costLow: 0,
+          costHigh: 0
+        }
+      ],
+
+      timelines: [
+        { id: "asap", label: "Active Leak / Storm (ASAP)", sub: "Priority inspection" },
+        { id: "30-days", label: "Within 30 Days", sub: "Ready to schedule" },
+        { id: "1-3-months", label: "1–3 Months", sub: "Planning ahead" },
+        { id: "budgeting", label: "Just Budgeting", sub: "Comparing options" }
+      ]
+    };
+    // =========================================================================
+    // END CALCULATOR_CONFIG
+    // =========================================================================
+
+    (function initRoofCalculator() {
+      const cfg = CALCULATOR_CONFIG;
+
+      const state = {
+        roofSqft: 2200,
+        storyId: "1-story",
+        pitchId: "standard",
+        materialId: "architectural",
+        tearOffId: "1-layer",
+        addonIds: new Set(["insurance"]),
+        timelineId: "30-days"
+      };
+
+      let toastTimer = null;
+
+      // Helpers
+      const fmtCurrency = (num) =>
+        new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(Math.round(num / 50) * 50);
+
+      const fmtExact = (num) =>
+        new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+          maximumFractionDigits: 0
+        }).format(Math.round(num));
+
+      const fmtNumber = (num) => new Intl.NumberFormat("en-US").format(num);
+
+      const calcMonthlyPayment = (principal, annualRate, months) => {
+        const r = annualRate / 12;
+        if (r === 0) return principal / months;
+        return (principal * (r * Math.pow(1 + r, months))) / (Math.pow(1 + r, months) - 1);
+      };
+
+      const showToast = (msg) => {
+        const toast = document.getElementById("toast");
+        toast.textContent = msg;
+        toast.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
+      };
+
+      const copyToClipboard = async (text, successMsg) => {
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed";
+            ta.style.opacity = "0";
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            ta.remove();
+          }
+          showToast(successMsg);
+          return true;
+        } catch {
+          showToast("Unable to copy automatically — please select and copy manually.");
+          return false;
+        }
+      };
+
+      // Hydrate static studio / demo identity
+      document.getElementById("demo-company-name").textContent = cfg.demoCompany.name;
+      document.getElementById("demo-service-area").textContent = cfg.demoCompany.serviceArea;
+      document.getElementById("footer-credit").textContent =
+        `Interactive Demo by ${cfg.studio.founderSignature} · $0/mo Serverless Architecture · © ${new Date().getFullYear()}`;
+
+      if (!cfg.studio.showStudioRibbon) {
+        document.getElementById("studio-ribbon").style.display = "none";
+      }
+      if (!cfg.studio.showStudioBanner) {
+        document.getElementById("studio-cta").style.display = "none";
+      }
+
+      const ribbonHubLink = document.getElementById("ribbon-hub-link");
+      const bannerHubBtn = document.getElementById("banner-hub-btn");
+      if (cfg.studio.showHubBackLink === false) {
+        ribbonHubLink.style.display = "none";
+        bannerHubBtn.style.display = "none";
+      } else {
+        ribbonHubLink.href = cfg.studio.hubUrl || "../../";
+        bannerHubBtn.href = cfg.studio.hubUrl || "../../";
+      }
+      const bannerBookBtn = document.getElementById("banner-book-btn");
+      if (cfg.studio.bookingUrl && cfg.studio.bookingUrl.trim()) {
+        bannerBookBtn.href = cfg.studio.bookingUrl.trim();
+      } else {
+        bannerBookBtn.href = `mailto:${cfg.studio.contactEmail}?subject=${encodeURIComponent("Custom Roof Quote Calculator Inquiry")}`;
+        bannerBookBtn.removeAttribute("target");
+      }
+
+      // Compute Current Pricing Model
+      const computeEstimate = () => {
+        const story = cfg.stories.find((s) => s.id === state.storyId) || cfg.stories[0];
+        const pitch = cfg.pitches.find((p) => p.id === state.pitchId) || cfg.pitches[1];
+        const material = cfg.materials.find((m) => m.id === state.materialId) || cfg.materials[1];
+        const tearOff = cfg.tearOffOptions.find((t) => t.id === state.tearOffId) || cfg.tearOffOptions[0];
+        const timeline = cfg.timelines.find((t) => t.id === state.timelineId) || cfg.timelines[1];
+
+        const baseSquares = state.roofSqft / 100;
+        const effectiveSqft = state.roofSqft * pitch.wasteFactor;
+        const effectiveSquares = effectiveSqft / 100;
+
+        // Base material & standard install (including waste-adjusted area)
+        const baseLow = effectiveSqft * material.rateLow;
+        const baseHigh = effectiveSqft * material.rateHigh;
+
+        // Pitch + Story labor/safety complexity adjustment
+        const complexityMultiplier = pitch.multiplier * story.multiplier;
+        const complexityDeltaLow = baseLow * (complexityMultiplier - 1);
+        const complexityDeltaHigh = baseHigh * (complexityMultiplier - 1);
+
+        // Tear-off adjustment based on actual roof sq ft
+        const tearOffLow = state.roofSqft * tearOff.perSqftLow;
+        const tearOffHigh = state.roofSqft * tearOff.perSqftHigh;
+
+        // Selected Add-Ons
+        const selectedAddons = cfg.addons.filter((a) => state.addonIds.has(a.id));
+        const addonsLow = selectedAddons.reduce((sum, a) => sum + a.costLow, 0);
+        const addonsHigh = selectedAddons.reduce((sum, a) => sum + a.costHigh, 0);
+
+        const totalLow = Math.max(3500, baseLow + complexityDeltaLow + tearOffLow + addonsLow);
+        const totalHigh = Math.max(totalLow + 1200, baseHigh + complexityDeltaHigh + tearOffHigh + addonsHigh);
+
+        const monthlyLow = calcMonthlyPayment(totalLow, cfg.financing.aprAnnual, cfg.financing.termMonths);
+        const monthlyHigh = calcMonthlyPayment(totalHigh, cfg.financing.aprAnnual, cfg.financing.termMonths);
+
+        return {
+          story,
+          pitch,
+          material,
+          tearOff,
+          timeline,
+          selectedAddons,
+          baseSquares,
+          effectiveSquares,
+          baseLow,
+          baseHigh,
+          complexityDeltaLow,
+          complexityDeltaHigh,
+          tearOffLow,
+          tearOffHigh,
+          addonsLow,
+          addonsHigh,
+          totalLow,
+          totalHigh,
+          monthlyLow,
+          monthlyHigh
+        };
+      };
+
+      // Render Interactive Controls
+      const renderPresets = () => {
+        const wrap = document.getElementById("area-presets");
+        wrap.innerHTML = "";
+        cfg.areaPresets.forEach((p) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = `preset-btn${state.roofSqft === p.sqft ? " active" : ""}`;
+          btn.innerHTML = `<span class="preset-sqft tabular"></span><span class="preset-lbl"></span>`;
+          btn.querySelector(".preset-sqft").textContent = `${fmtNumber(p.sqft)} sf`;
+          btn.querySelector(".preset-lbl").textContent = p.label;
+          btn.addEventListener("click", () => {
+            state.roofSqft = p.sqft;
+            document.getElementById("roof-area-slider").value = String(p.sqft);
+            updateAll();
+          });
+          wrap.appendChild(btn);
+        });
+      };
+
+      const renderStories = () => {
+        const wrap = document.getElementById("stories-grid");
+        wrap.innerHTML = "";
+        cfg.stories.forEach((s) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "seg-btn";
+          btn.setAttribute("aria-pressed", String(state.storyId === s.id));
+          btn.innerHTML = `<span class="seg-title"></span><span class="seg-sub"></span>`;
+          btn.querySelector(".seg-title").textContent = s.label;
+          btn.querySelector(".seg-sub").textContent = s.sub;
+          btn.addEventListener("click", () => {
+            state.storyId = s.id;
+            updateAll();
+          });
+          wrap.appendChild(btn);
+        });
+      };
+
+      const renderPitches = () => {
+        const wrap = document.getElementById("pitch-grid");
+        wrap.innerHTML = "";
+        cfg.pitches.forEach((p) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "pitch-card";
+          btn.setAttribute("aria-pressed", String(state.pitchId === p.id));
+          btn.innerHTML = `
+            <div class="pitch-svg-box" aria-hidden="true">
+              <svg width="48" height="40" viewBox="0 0 52 40" fill="none">
+                <line x1="6" y1="34" x2="46" y2="34" stroke="#CFC9BC" stroke-width="1.6" stroke-dasharray="2 2"/>
+                <path d="${p.svgPath}" stroke="#162A45" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="26" cy="${p.id === "low" ? 22 : p.id === "standard" ? 16 : p.id === "steep" ? 11 : 7}" r="2.4" fill="#B94A1F"/>
+              </svg>
+            </div>
+            <div>
+              <div class="pitch-name"></div>
+              <div class="pitch-ratio"></div>
+              <div class="pitch-note"></div>
+            </div>
+          `;
+          btn.querySelector(".pitch-name").textContent = p.name;
+          btn.querySelector(".pitch-ratio").textContent = `Pitch ${p.ratio}`;
+          btn.querySelector(".pitch-note").textContent = p.note;
+          btn.addEventListener("click", () => {
+            state.pitchId = p.id;
+            updateAll();
+          });
+          wrap.appendChild(btn);
+        });
+      };
+
+      const renderMaterials = () => {
+        const wrap = document.getElementById("material-list");
+        wrap.innerHTML = "";
+        cfg.materials.forEach((m) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "material-card";
+          btn.setAttribute("aria-pressed", String(state.materialId === m.id));
+          btn.innerHTML = `
+            <div class="mat-left">
+              <span class="mat-radio" aria-hidden="true"></span>
+              <div>
+                <div class="mat-title-row">
+                  <span class="mat-name"></span>
+                  ${m.tag ? `<span class="mat-tag"></span>` : ""}
+                </div>
+                <div class="mat-desc"></div>
+                <div class="mat-specs"></div>
+              </div>
+            </div>
+            <div class="mat-price-col">
+              <div class="mat-rate tabular"></div>
+              <div class="mat-unit">per sq ft installed</div>
+            </div>
+          `;
+          btn.querySelector(".mat-name").textContent = m.name;
+          if (m.tag) btn.querySelector(".mat-tag").textContent = m.tag;
+          btn.querySelector(".mat-desc").textContent = m.description;
+          btn.querySelector(".mat-specs").textContent = m.specs;
+          btn.querySelector(".mat-rate").textContent = `$${m.rateLow.toFixed(2)} – $${m.rateHigh.toFixed(2)}`;
+          btn.addEventListener("click", () => {
+            state.materialId = m.id;
+            updateAll();
+          });
+          wrap.appendChild(btn);
+        });
+      };
+
+      const renderTearOffs = () => {
+        const wrap = document.getElementById("tearoff-grid");
+        wrap.innerHTML = "";
+        cfg.tearOffOptions.forEach((t) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "seg-btn";
+          btn.setAttribute("aria-pressed", String(state.tearOffId === t.id));
+          btn.innerHTML = `<span class="seg-title"></span><span class="seg-sub"></span>`;
+          btn.querySelector(".seg-title").textContent = t.label;
+          btn.querySelector(".seg-sub").textContent = t.sub;
+          btn.addEventListener("click", () => {
+            state.tearOffId = t.id;
+            updateAll();
+          });
+          wrap.appendChild(btn);
+        });
+      };
+
+      const renderAddons = () => {
+        const wrap = document.getElementById("addons-list");
+        wrap.innerHTML = "";
+        cfg.addons.forEach((a) => {
+          const isChecked = state.addonIds.has(a.id);
+          const label = document.createElement("label");
+          label.className = `addon-row${isChecked ? " checked" : ""}`;
+          label.innerHTML = `
+            <span class="addon-left">
+              <input type="checkbox" class="addon-checkbox" ${isChecked ? "checked" : ""} />
+              <span>
+                <span class="addon-name"></span>
+                <div class="addon-desc"></div>
+              </span>
+            </span>
+            <span class="addon-cost tabular"></span>
+          `;
+          label.querySelector(".addon-name").textContent = a.name;
+          label.querySelector(".addon-desc").textContent = a.description;
+          label.querySelector(".addon-cost").textContent =
+            a.costLow === 0 && a.costHigh === 0
+              ? "Included ($0)"
+              : `+${fmtExact(a.costLow)} – ${fmtExact(a.costHigh)}`;
+          label.querySelector("input").addEventListener("change", (e) => {
+            if (e.target.checked) state.addonIds.add(a.id);
+            else state.addonIds.delete(a.id);
+            updateAll();
+          });
+          wrap.appendChild(label);
+        });
+      };
+
+      const renderTimelines = () => {
+        const wrap = document.getElementById("timeline-grid");
+        wrap.innerHTML = "";
+        cfg.timelines.forEach((t) => {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "seg-btn";
+          btn.setAttribute("aria-pressed", String(state.timelineId === t.id));
+          btn.innerHTML = `<span class="seg-title"></span><span class="seg-sub"></span>`;
+          btn.querySelector(".seg-title").textContent = t.label;
+          btn.querySelector(".seg-sub").textContent = t.sub;
+          btn.addEventListener("click", () => {
+            state.timelineId = t.id;
+            updateAll();
+          });
+          wrap.appendChild(btn);
+        });
+      };
+
+      const buildEstimateSummaryText = (est, lead) => {
+        const lines = [
+          `US ROOF REPLACEMENT ESTIMATE — ${cfg.demoCompany.name}`,
+          `Estimated Installed Range : ${fmtCurrency(est.totalLow)} – ${fmtCurrency(est.totalHigh)}`,
+          `Est. Financing (120 mo)   : ${fmtExact(est.monthlyLow)} – ${fmtExact(est.monthlyHigh)}/mo (8.99% APR illustrative)`,
+          `--------------------------------------------------`,
+          `Roof Area (Footprint)     : ${fmtNumber(state.roofSqft)} sq ft (${est.baseSquares.toFixed(1)} base squares)`,
+          `Effective Area w/ Waste   : ${est.effectiveSquares.toFixed(1)} squares (${Math.round((est.pitch.wasteFactor - 1) * 100)}% waste)`,
+          `Home Height / Access      : ${est.story.label}`,
+          `Roof Pitch (Slope)        : ${est.pitch.name} (${est.pitch.ratio})`,
+          `Selected Material Tier    : ${est.material.name} (${est.material.lifespan})`,
+          `Existing Roof Removal     : ${est.tearOff.label}`,
+          `Target Timeline           : ${est.timeline.label}`,
+          `Upgrades Included         : ${
+            est.selectedAddons.length > 0
+              ? est.selectedAddons.map((a) => a.name).join("; ")
+              : "None"
+          }`
+        ];
+
+        if (lead) {
+          lines.push(
+            `--------------------------------------------------`,
+            `HOMEOWNER / PROJECT DETAILS`,
+            `Quote Reference           : ${lead.ref}`,
+            `Name                      : ${lead.name}`,
+            `Email                     : ${lead.email}`,
+            `Property ZIP / Location   : ${lead.zip}${lead.city ? ` (${lead.city})` : ""}`,
+            `Street Address            : ${lead.address || "(not provided)"}`,
+            `Project Notes             : ${lead.notes || "(none)"}`
+          );
+        }
+
+        lines.push(
+          `--------------------------------------------------`,
+          `Generated via QuoteCraft Studio Interactive Estimator ($0/mo serverless demo)`
+        );
+        return lines.join("\n");
+      };
+
+      const renderSummary = () => {
+        const est = computeEstimate();
+
+        // Update Step 1-3 header readouts
+        document.getElementById("area-value-display").textContent = fmtNumber(state.roofSqft);
+        document.getElementById("squares-display").textContent = `${est.baseSquares.toFixed(1)} Base Squares`;
+        document.getElementById("step1-tag").textContent = `${fmtNumber(state.roofSqft)} sq ft`;
+        document.getElementById("step2-tag").textContent = est.pitch.ratio;
+        document.getElementById("step3-tag").textContent = est.material.name.split(" (")[0];
+
+        // Slider fill progress visual
+        const slider = document.getElementById("roof-area-slider");
+        const pct = ((state.roofSqft - Number(slider.min)) / (Number(slider.max) - Number(slider.min))) * 100;
+        slider.style.background = `linear-gradient(to right, #162A45 0%, #162A45 ${pct}%, #E4E1D8 ${pct}%, #E4E1D8 100%)`;
+
+        // Main Summary Range
+        const rangeStr = `${fmtCurrency(est.totalLow)} – ${fmtCurrency(est.totalHigh)}`;
+        document.getElementById("summary-range").textContent = rangeStr;
+        document.getElementById("summary-monthly").textContent =
+          `${fmtExact(est.monthlyLow)} – ${fmtExact(est.monthlyHigh)}/mo`;
+
+        document.getElementById("spec-eff-squares").textContent = `${est.effectiveSquares.toFixed(1)} sq`;
+        document.getElementById("spec-pitch").textContent = est.pitch.ratio;
+        document.getElementById("spec-lifespan").textContent = est.material.lifespan;
+
+        // Mobile Sticky Bar
+        document.getElementById("mobile-bar-meta").textContent =
+          `${est.material.name.split(" ")[0]} · ${est.effectiveSquares.toFixed(1)} sq`;
+        document.getElementById("mobile-bar-price").textContent = rangeStr;
+
+        // Transparent Itemized Breakdown
+        const breakdown = document.getElementById("breakdown-list");
+        breakdown.innerHTML = "";
+
+        const rows = [
+          {
+            key: `${est.material.name.split(" (")[0]} (${est.effectiveSquares.toFixed(1)} sq)`,
+            val: `${fmtExact(est.baseLow)} – ${fmtExact(est.baseHigh)}`
+          }
+        ];
+
+        if (est.complexityDeltaHigh > 10) {
+          rows.push({
+            key: `Pitch (${est.pitch.ratio}) & ${est.story.label} Labor`,
+            val: `+${fmtExact(est.complexityDeltaLow)} – ${fmtExact(est.complexityDeltaHigh)}`
+          });
+        } else {
+          rows.push({
+            key: `Pitch (${est.pitch.ratio}) & ${est.story.label} Labor`,
+            val: "Standard ($0)"
+          });
+        }
+
+        if (est.tearOffLow !== 0 || est.tearOffHigh !== 0) {
+          const isCredit = est.tearOffLow < 0;
+          rows.push({
+            key: est.tearOff.label,
+            val: isCredit
+              ? `-${fmtExact(Math.abs(est.tearOffLow))} – -${fmtExact(Math.abs(est.tearOffHigh))}`
+              : `+${fmtExact(est.tearOffLow)} – ${fmtExact(est.tearOffHigh)}`
+          });
+        } else {
+          rows.push({
+            key: "1-Layer Tear-Off & Disposal",
+            val: "Included"
+          });
+        }
+
+        if (est.addonsHigh > 0) {
+          rows.push({
+            key: `Selected Upgrades (${est.selectedAddons.filter((a) => a.costHigh > 0).length})`,
+            val: `+${fmtExact(est.addonsLow)} – ${fmtExact(est.addonsHigh)}`
+          });
+        } else if (est.selectedAddons.length > 0) {
+          rows.push({
+            key: "Storm Documentation Package",
+            val: "Included ($0)"
+          });
+        }
+
+        rows.forEach((r) => {
+          const li = document.createElement("li");
+          li.className = "breakdown-row";
+          li.innerHTML = `<span class="breakdown-key"></span><span class="breakdown-val tabular"></span>`;
+          li.querySelector(".breakdown-key").textContent = r.key;
+          li.querySelector(".breakdown-val").textContent = r.val;
+          breakdown.appendChild(li);
+        });
+      };
+
+      const updateAll = () => {
+        renderPresets();
+        renderStories();
+        renderPitches();
+        renderMaterials();
+        renderTearOffs();
+        renderAddons();
+        renderTimelines();
+        renderSummary();
+      };
+
+      // Slider Event
+      document.getElementById("roof-area-slider").addEventListener("input", (e) => {
+        state.roofSqft = Number(e.target.value);
+        renderPresets();
+        renderSummary();
+      });
+
+      // Summary Quick Actions
+      document.getElementById("summary-copy-btn").addEventListener("click", () => {
+        const text = buildEstimateSummaryText(computeEstimate(), null);
+        copyToClipboard(text, "Estimate summary copied to clipboard");
+      });
+
+      document.getElementById("summary-print-btn").addEventListener("click", () => {
+        window.print();
+      });
+
+      // Zero-Backend Lead Capture Form Handling
+      const leadForm = document.getElementById("lead-form");
+      const receiptBox = document.getElementById("receipt-box");
+      let lastGeneratedTicketText = "";
+
+      const setFieldError = (inputId, errId, isInvalid) => {
+        document.getElementById(inputId).classList.toggle("invalid", isInvalid);
+        document.getElementById(errId).classList.toggle("visible", isInvalid);
+      };
+
+      leadForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("lead-name").value.trim();
+        const email = document.getElementById("lead-email").value.trim();
+        const zip = document.getElementById("lead-zip").value.trim();
+        const city = document.getElementById("lead-city").value.trim();
+        const address = document.getElementById("lead-address").value.trim();
+        const notes = document.getElementById("lead-notes").value.trim();
+
+        const badName = name.length < 2;
+        const badEmail = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const badZip = !/^\d{5}(-\d{4})?$/.test(zip);
+
+        setFieldError("lead-name", "err-name", badName);
+        setFieldError("lead-email", "err-email", badEmail);
+        setFieldError("lead-zip", "err-zip", badZip);
+
+        if (badName || badEmail || badZip) {
+          showToast("Please complete the highlighted required fields.");
+          return;
+        }
+
+        const est = computeEstimate();
+        const refCode = `#QC-ROOF-${String(Math.floor(1000 + Math.random() * 9000))}`;
+        const leadPayload = {
+          ref: refCode,
+          submittedAt: new Date().toISOString(),
+          name,
+          email,
+          zip,
+          city,
+          address,
+          notes,
+          estimateLow: Math.round(est.totalLow / 50) * 50,
+          estimateHigh: Math.round(est.totalHigh / 50) * 50,
+          roofSqft: state.roofSqft,
+          effectiveSquares: Number(est.effectiveSquares.toFixed(1)),
+          pitch: est.pitch.ratio,
+          material: est.material.name,
+          stories: est.story.label,
+          tearOff: est.tearOff.label,
+          timeline: est.timeline.label,
+          addons: est.selectedAddons.map((a) => a.name)
+        };
+
+        // Optional serverless webhook (e.g., Google Apps Script in production)
+        if (cfg.leadRouting.webhookUrl && cfg.leadRouting.webhookUrl.trim()) {
+          try {
+            await fetch(cfg.leadRouting.webhookUrl.trim(), {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(leadPayload)
+            });
+          } catch {
+            // Fall through cleanly to local receipt & email option
+          }
+        }
+
+        lastGeneratedTicketText = buildEstimateSummaryText(est, leadPayload);
+        document.getElementById("receipt-ref").textContent = refCode;
+        document.getElementById("receipt-preview").textContent = lastGeneratedTicketText;
+
+        const subject = `Roof Estimate ${refCode} (${fmtCurrency(est.totalLow)}–${fmtCurrency(est.totalHigh)}) — ZIP ${zip}`;
+        const params = new URLSearchParams();
+        params.set("subject", subject);
+        params.set("body", lastGeneratedTicketText);
+        document.getElementById("receipt-mailto-btn").href =
+          `mailto:${cfg.studio.contactEmail}?${params.toString().replace(/\+/g, "%20")}`;
+
+        leadForm.style.display = "none";
+        receiptBox.classList.add("visible");
+        showToast(`Quote ticket ${refCode} ready!`);
+        receiptBox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      document.getElementById("receipt-copy-btn").addEventListener("click", () => {
+        copyToClipboard(lastGeneratedTicketText, "Full quote ticket copied");
+      });
+
+      document.getElementById("receipt-print-btn").addEventListener("click", () => {
+        window.print();
+      });
+
+      document.getElementById("receipt-edit-btn").addEventListener("click", () => {
+        receiptBox.classList.remove("visible");
+        leadForm.style.display = "block";
+      });
+
+      // Clear validation state on input
+      ["lead-name", "lead-email", "lead-zip"].forEach((id) => {
+        document.getElementById(id).addEventListener("input", () => {
+          document.getElementById(id).classList.remove("invalid");
+          document.getElementById(`err-${id.replace("lead-", "")}`).classList.remove("visible");
+        });
+      });
+
+      // Initial render
+      updateAll();
+    })();
+  </script>
+</body>
+</html>
